@@ -21,7 +21,7 @@ class Server {
         this.app.use(express_1.default.json());
     }
     routes() {
-        this.app.use(indexRoutes_1.default);
+        this.app.use('/', indexRoutes_1.default);
         this.app.use('/usuarios', usuariosRoutes_1.default);
     }
     start() {

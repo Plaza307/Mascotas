@@ -56,6 +56,17 @@ class UsuarioController {
 
         res.json(usuario);
     }
+
+    public async readLogin(req: Request, res: Response) {
+        const usuario = await pool.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
+        if(usuario.length == 0){
+            res.send(false);
+        }
+
+        res.send(usuario[0]);
+
+
+    }
 }
 
 export const usuariosController = new UsuarioController();

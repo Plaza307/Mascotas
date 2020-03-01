@@ -65,5 +65,14 @@ class UsuarioController {
             res.json(usuario);
         });
     }
+    readLogin(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield database_1.default.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
+            if (usuario.length == 0) {
+                res.send(false);
+            }
+            res.send(usuario[0]);
+        });
+    }
 }
 exports.usuariosController = new UsuarioController();
