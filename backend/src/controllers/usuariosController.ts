@@ -64,8 +64,6 @@ class UsuarioController {
         }
 
         res.send(usuario[0]);
-
-
     }
 }
 

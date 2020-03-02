@@ -9,7 +9,7 @@ class UsuariosRoutes {
     }
 
     config(): void {
-        this.router.post('/', usuariosController.create);
+        this.router.post('/registrar', usuariosController.create);
         this.router.get('/', usuariosController.read);
         this.router.put('/:id', usuariosController.update);
         this.router.delete('/:id', usuariosController.delete);
