@@ -1,0 +1,14 @@
+<div class="contenedor">
+    <div class="fichaLogin">
+        <h1>Login</h1><br>
+
+        <div class="formulariologin">
+            <form [formGroup]="formLogin" (submit)="submit()">
+                Email: <input type="text" formControlName="email"> Contraseña: <input type="text" formControlName="password">
+
+                <button type="submit" [disabled]="!formLogin.valid">Enviar</button>
+
+            </form>
+        </div>
+    </div>
+</div>

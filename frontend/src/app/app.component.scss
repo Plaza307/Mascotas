@@ -1,0 +1,14 @@
+.contenedor {
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    grid-template-columns: 12fr;
+    grid-template-areas: "header" "main";
+}
+
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+}
