@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import pool from '../database';
+const jwt = require('jsonwebtoken');
+const SECRET_KEY='Co-Vid19'
 
 class UsuarioController {
     index(
@@ -59,11 +61,18 @@ class UsuarioController {
 
     public async readLogin(req: Request, res: Response) {
         const usuario = await pool.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
+        
         if(usuario.length == 0){
-            res.send(false);
+            res.send([false]);
+        } else{
+            const expiraEn=24*60*60;
+            const accessToken=jwt.sign({id: usuario.email},
+                                        SECRET_KEY,{expiresIn: expiraEn});
+
+            res.send([usuario[0], accessToken]);
         }
 
-        res.send(usuario[0]);
+        
     }
 }
 

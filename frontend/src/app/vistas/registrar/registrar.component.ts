@@ -31,6 +31,12 @@ export class RegistrarComponent implements OnInit {
   submit() {
     this.servicioUsuario.crearUsuario(this.formularioRegistro.value).subscribe(
       res => {
+        if (res) {
+          alert('Usuario creado correctamente');
+          this.router.navigate(['/login']);
+        } else {
+          this.router.navigate(['/registrarlogin']);
+        }
         console.log(res);
       },
       err => {

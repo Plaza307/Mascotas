@@ -6,7 +6,7 @@
             <form [formGroup]="formularioRegistro" (submit)="submit()">
                 Nombre: <input type="text" formControlName="nombre"><br> Apellidos: <input type="text" formControlName="apellidos"><br> Email: <input type="text" formControlName="email"><br> Contraseña: <input type="text" formControlName="password"><br>                Telefono: <input type="text" formControlName="telefono"><br> Fecha de Nacimiento: <input type="date" formControlName="f_nac">
 
-                <button type="submit" [disabled]="!formLogin.valid">Enviar</button>
+                <button type="submit">Enviar</button>
 
             </form>
         </div>

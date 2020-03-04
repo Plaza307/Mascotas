@@ -30,10 +30,12 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res);
 
-        if (res) {
+        if (res[0]) {
           this.router.navigate(['/inicio']);
+          localStorage.setItem('token', res[1]);
         } else {
           this.router.navigate(['/login']);
+          alert('El login es incorrecto, revisa el email y el password');
         }
       },
       err => {

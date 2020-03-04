@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'Co-Vid19';
 class UsuarioController {
     index(req, res) {
         res.json({ 'message': 'Estas en Usuario' });
@@ -69,9 +71,13 @@ class UsuarioController {
         return __awaiter(this, void 0, void 0, function* () {
             const usuario = yield database_1.default.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
             if (usuario.length == 0) {
-                res.send(false);
+                res.send([false]);
             }
-            res.send(usuario[0]);
+            else {
+                const expiraEn = 24 * 60 * 60;
+                const accessToken = jwt.sign({ id: usuario.email }, SECRET_KEY, { expiresIn: expiraEn });
+                res.send([usuario[0], accessToken]);
+            }
         });
     }
 }

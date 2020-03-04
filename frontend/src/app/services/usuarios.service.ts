@@ -20,4 +20,8 @@ export class UsuariosService {
 
     return this.http.post('http://localhost:3000/usuarios/login', usuarioM);
   }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }
