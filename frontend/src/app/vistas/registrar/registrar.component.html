@@ -4,9 +4,43 @@
 
         <div class="formularioRegistro">
             <form [formGroup]="formularioRegistro" (submit)="submit()">
-                Nombre: <input type="text" formControlName="nombre"><br> Apellidos: <input type="text" formControlName="apellidos"><br> Email: <input type="text" formControlName="email"><br> Contraseña: <input type="text" formControlName="password"><br>                Telefono: <input type="text" formControlName="telefono"><br> Fecha de Nacimiento: <input type="date" formControlName="f_nac">
+                Nombre: <input type="text" formControlName="nombre" required><br>
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
 
-                <button type="submit">Enviar</button>
+                    <div *ngIf="nombre.errors.required">
+                        El nombre es obligatorio.
+                    </div>
+                </div>
+                Apellidos: <input type="text" formControlName="apellidos" required><br>
+                <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+
+                    <div *ngIf="apellidos.errors.required">
+                        El apellido es obligatorio.
+                    </div>
+                </div>
+
+                Email: <input type="text" formControlName="email" required><br>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+
+                    <div *ngIf="email.errors.required">
+                        El email es obligatorio.
+                    </div>
+                </div>
+                Contraseña: <input type="text" formControlName="password" required><br>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)">
+
+                    <div *ngIf="password.errors.required">
+                        La contraseña es obligatoria.
+                    </div>
+                </div>
+                Telefono: <input type="text" formControlName="telefono"><br> Fecha de Nacimiento: <input type="date" formControlName="f_nac" required>
+                <div *ngIf="f_nac.invalid && (f_nac.dirty || f_nac.touched)">
+
+                    <div *ngIf="f_nac.errors.required">
+                        La fecha de nacimiento es obligatoria.
+                    </div>
+                </div>
+                <button type="submit" [disabled]="!formularioRegistro.valid">Enviar</button>
 
             </form>
         </div>

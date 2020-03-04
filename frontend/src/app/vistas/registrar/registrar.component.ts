@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Registrousuario } from 'src/app/modelos/registrousuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Router } from '@angular/router';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registrar',
@@ -16,12 +17,12 @@ export class RegistrarComponent implements OnInit {
 
   constructor(private router: Router, private formBuilder: FormBuilder, private servicioUsuario: UsuariosService) {
     this.formularioRegistro = formBuilder.group({
-      nombre: [''],
-      apellidos: [''],
-      email: [''],
-      password: [''],
+      nombre: ['', [Validators.required]],
+      apellidos: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
       telefono: [''],
-      f_nac: ['']
+      f_nac: ['', [Validators.required]]
     });
    }
 
@@ -35,7 +36,7 @@ export class RegistrarComponent implements OnInit {
           alert('Usuario creado correctamente');
           this.router.navigate(['/login']);
         } else {
-          this.router.navigate(['/registrarlogin']);
+          this.router.navigate(['/registrar']);
         }
         console.log(res);
       },
@@ -44,6 +45,7 @@ export class RegistrarComponent implements OnInit {
       }
     );
   }
+
 
   get nombre() {
     return this.formularioRegistro.get('nombre');
