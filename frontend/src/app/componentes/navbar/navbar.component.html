@@ -2,19 +2,21 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
     <a class="navbar-brand" href="/inicio"><img src="../../../assets/img/logoEnd1.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon">
+                
+              </span>
             </button>
     <!------------------------------- Div de Hoteles ------------------------------------>
     <div class="collapse navbar-collapse" id="navbarHoteles">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-warning">Hoteles</button>
+            <button type="button" class="btn btn-warning"><a href="/alojamientos">Alojamiento</a></button>
             <div class="btn-group " role="group">
                 <button id="hotelesNav" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu hidden" aria-labelledby="hotelesNav" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                    <a class="dropdown-item" id="apartamento" href="#">Apartamentos</a>
-                    <a class="dropdown-item" id="campings" href="#">Campings</a>
-                    <a class="dropdown-item" id="hoteles" href="#">Hoteles</a>
-                    <a class="dropdown-item" id="newPost" href="#">Publicar nuevo hotel</a>
+                    <a class="dropdown-item" id="apartamento" href="/apartamentos">Apartamentos</a>
+                    <a class="dropdown-item" id="campings" href="/campings">Campings</a>
+                    <a class="dropdown-item" id="hoteles" href="/hoteles">Hoteles</a>
+                    <a class="dropdown-item" id="newPost" href="app-vista-hoteles">Publicar nuevo alojamiento</a>
                 </div>
             </div>
         </div>
@@ -60,7 +62,7 @@
 
     <!------------------------------- Div de login -------------------------------->
     <div class="collapse navbar-collapse" id="loginNav">
-        
+
         <a href="/login">
             <img src="../../../assets/img/usuario.png">
         </a>

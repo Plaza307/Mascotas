@@ -4,6 +4,11 @@ import { LoginComponent } from './componentes/login/login.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { VistaHomeComponent } from './vistas/vista-home/vista-home.component';
 import { RegistrarComponent } from './vistas/registrar/registrar.component';
+import { HotelesService } from './services/hoteles.service';
+import { VistaHotelesComponent } from './vistas/vistasAlojamientos/vista-hoteles/vista-hoteles.component';
+import { VistaApartamentosComponent } from './vistas/vistasAlojamientos/vista-apartamentos/vista-apartamentos.component';
+import { VistaCampingsComponent } from './vistas/vistasAlojamientos/vista-campings/vista-campings.component';
+import { VistaAlojamientoComponent } from './vistas/vistasAlojamientos/vista-alojamiento/vista-alojamiento.component';
 
 const routes: Routes = [
   {
@@ -18,6 +23,22 @@ const routes: Routes = [
   {
     path: 'registrar',
     component: RegistrarComponent
+  },
+  {
+    path: 'alojamientos',
+    component: VistaAlojamientoComponent
+  },
+  {
+    path: 'apartamentos',
+    component: VistaApartamentosComponent
+  },
+  {
+    path: 'campings',
+    component: VistaCampingsComponent
+  },
+  {
+    path: 'hoteles',
+    component: VistaHotelesComponent
   },
   {
     path: 'login',

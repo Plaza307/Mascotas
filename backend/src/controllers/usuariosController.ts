@@ -71,9 +71,9 @@ class UsuarioController {
 
             res.send([usuario[0], accessToken]);
         }
+    }
 
         
-    }
 }
 
 export const usuariosController = new UsuarioController();
