@@ -64,7 +64,7 @@ export class RegistrarComponent implements OnInit {
   }
 
   get telefono() {
-    return this.formularioRegistro.get('telfono');
+    return this.formularioRegistro.get('telefono');
   }
 
   get f_nac() {

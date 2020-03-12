@@ -9,6 +9,7 @@ import { VistaHotelesComponent } from './vistas/vistasAlojamientos/vista-hoteles
 import { VistaApartamentosComponent } from './vistas/vistasAlojamientos/vista-apartamentos/vista-apartamentos.component';
 import { VistaCampingsComponent } from './vistas/vistasAlojamientos/vista-campings/vista-campings.component';
 import { VistaAlojamientoComponent } from './vistas/vistasAlojamientos/vista-alojamiento/vista-alojamiento.component';
+import { PublicarAlojamientoComponent } from './vistas/vistasAlojamientos/publicar-alojamiento/publicar-alojamiento.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'hoteles',
     component: VistaHotelesComponent
+  },
+  {
+    path: 'publicar/alojamiento',
+    component: PublicarAlojamientoComponent
   },
   {
     path: 'login',

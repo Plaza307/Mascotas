@@ -47,5 +47,16 @@ class SitiosController {
             res.send(listado);
         });
     }
+    publicarAlojamientos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const listado = yield database_1.default.query('INSERT INTO sitios set ?', [req.body]);
+            if (listado.affectedRows > 0) {
+                res.send(true);
+            }
+            else {
+                res.send(false);
+            }
+        });
+    }
 }
 exports.sitiosController = new SitiosController();

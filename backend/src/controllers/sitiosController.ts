@@ -36,6 +36,16 @@ class SitiosController {
         console.log(listado);
         res.send(listado);
     }
+
+    public async publicarAlojamientos(req: Request, res: Response) {
+        const listado = await pool.query('INSERT INTO sitios set ?', [req.body]);
+        
+        if (listado.affectedRows > 0) {
+            res.send(true);
+        } else {
+            res.send(false);
+        }
+    }
         
 }
 

@@ -1,1 +1,13 @@
-<p>publicar-alojamiento works!</p>
+<div class="contenedor">
+    <div class="fichaLogin">
+        <h1>Registro de alojamientos</h1><br>
+        <div class="formularioAlojamiento">
+            <form [formGroup]="formularioRegistroAlojamientos" (submit)="submit()">
+                Nombre del alojamiento: <input type="text" formControlName="nombre"><br> Descripcion: <input type="textarea" formControlName="descripcion"><br> Foto: <input type="file" formControlName="foto"><br> Precio: <input type="number" formControlName="precio"><br>                Capacidad: <input type="number" formControlName="capacidad"><br> Telefono: <input type="number" formControlName="telefono"><br> Web: <input type="text" formControlName="web"><br>
+
+                <button type="submit">Enviar</button>
+
+            </form>
+        </div>
+    </div>
+</div>

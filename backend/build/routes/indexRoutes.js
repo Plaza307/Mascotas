@@ -14,6 +14,7 @@ class IndexRoutes {
         this.router.get('/apartamentos', sitiosController_1.sitiosController.verApartamentos);
         this.router.get('/campings', sitiosController_1.sitiosController.verCampings);
         this.router.get('/hoteles', sitiosController_1.sitiosController.verHoteles);
+        this.router.post('/publicar/alojamiento', sitiosController_1.sitiosController.publicarAlojamientos);
     }
 }
 const indexRoutes = new IndexRoutes();
