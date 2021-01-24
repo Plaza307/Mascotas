@@ -14,13 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usuariosController = void 0;
 const database_1 = __importDefault(require("../database"));
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'mascotoken';
 class UsuarioController {
     index(req, res) {
         res.json({ 'message': 'Estas en Usuario' });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('insert into usuarios set ?', [req.body]);
+            const passwordHash = bcrypt.hashSyncs(req.body.password, 10);
+            const respuesta = yield database_1.default.query('insert into usuarios set ?', [passwordHash]);
             if (respuesta.insertId > 0) {
                 res.json("Usuario insertado");
             }
@@ -68,11 +72,24 @@ class UsuarioController {
     }
     readLogin(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield database_1.default.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
-            if (usuario.length == 0) {
+            // // const passwordHash = bcrypt.hashSync(req.body.password, 10);
+            // console.log("password encriptada ",passwordHash)
+            const usuario = yield database_1.default.query('SELECT password FROM usuarios WHERE email=?', [req.body.email]);
+            const ValorLogin = req.body.password;
+            const ValorBD = usuario[0].password;
+            console.log("valor-d", ValorBD);
+            console.log('usuario', usuario);
+            // const passwordCrypt = bcrypt.hashSync(ValorLogin, salt)
+            const comparacion1 = bcrypt.compareSync(ValorLogin, ValorBD);
+            if (comparacion1 == true) {
+                const user = yield database_1.default.query('SELECT * FROM usuarios WHERE email=? ', [req.body.email]);
+                const expiraEn = 24 * 60 * 60;
+                const accessToken = jwt.sign({ id: user.email }, SECRET_KEY, { expiresIn: expiraEn });
+                res.send([user[0], accessToken]);
+            }
+            else {
                 res.send(false);
             }
-            res.send(usuario[0]);
         });
     }
 }

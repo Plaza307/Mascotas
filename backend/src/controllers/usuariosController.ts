@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
 import pool from '../database';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'mascotoken';
 
 class UsuarioController {
     index(
@@ -10,7 +13,9 @@ class UsuarioController {
     }
 
     public async create(req: Request, res: Response) {
-        const respuesta = await pool.query('insert into usuarios set ?', [req.body]);
+
+        const passwordHash = bcrypt.hashSyncs(req.body.password, 10);
+        const respuesta = await pool.query('insert into usuarios set ?', [passwordHash]);
 
         if (respuesta.insertId > 0) {
             res.json("Usuario insertado");
@@ -58,13 +63,30 @@ class UsuarioController {
     }
 
     public async readLogin(req: Request, res: Response) {
-        const usuario = await pool.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
-        if(usuario.length == 0){
+        // // const passwordHash = bcrypt.hashSync(req.body.password, 10);
+        // console.log("password encriptada ",passwordHash)
+        const usuario = await pool.query('SELECT password FROM usuarios WHERE email=?', [req.body.email])
+
+        
+        const ValorLogin=req.body.password;
+
+        const ValorBD = usuario[0].password
+        console.log("valor-d", ValorBD);
+        console.log('usuario', usuario);
+
+        // const passwordCrypt = bcrypt.hashSync(ValorLogin, salt)
+        const comparacion1 = bcrypt.compareSync(ValorLogin, ValorBD)
+        
+
+        if(comparacion1==true){
+            const user = await pool.query('SELECT * FROM usuarios WHERE email=? ', [req.body.email])
+
+            const expiraEn = 24 * 60 * 60;
+        const accessToken = jwt.sign({ id: user.email }, SECRET_KEY, { expiresIn: expiraEn });
+        res.send([user[0], accessToken]);
+        } else {
             res.send(false);
         }
-
-        res.send(usuario[0]);
-    }
 }
-
+}
 export const usuariosController = new UsuarioController();
