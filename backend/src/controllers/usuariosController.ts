@@ -71,8 +71,6 @@ class UsuarioController {
         const ValorLogin=req.body.password;
 
         const ValorBD = usuario[0].password
-        console.log("valor-d", ValorBD);
-        console.log('usuario', usuario);
 
         // const passwordCrypt = bcrypt.hashSync(ValorLogin, salt)
         const comparacion1 = bcrypt.compareSync(ValorLogin, ValorBD)

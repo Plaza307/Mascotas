@@ -77,8 +77,6 @@ class UsuarioController {
             const usuario = yield database_1.default.query('SELECT password FROM usuarios WHERE email=?', [req.body.email]);
             const ValorLogin = req.body.password;
             const ValorBD = usuario[0].password;
-            console.log("valor-d", ValorBD);
-            console.log('usuario', usuario);
             // const passwordCrypt = bcrypt.hashSync(ValorLogin, salt)
             const comparacion1 = bcrypt.compareSync(ValorLogin, ValorBD);
             if (comparacion1 == true) {
