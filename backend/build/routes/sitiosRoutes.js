@@ -16,6 +16,14 @@ class SitiosRoutes {
         this.router.post('/publicar/alojamiento', sitiosController_1.sitiosController.publicarAlojamientos);
         this.router.get('/listarCiudades', sitiosController_1.sitiosController.listarCiudades);
         this.router.get('/getTipoSitio', sitiosController_1.sitiosController.getTipoSitio);
+        this.router.get('/comercios', sitiosController_1.sitiosController.verComercios);
+        this.router.get('/restaurantes', sitiosController_1.sitiosController.verRestaurantes);
+        this.router.get('/tiendas', sitiosController_1.sitiosController.verTiendas);
+        this.router.get('/veterinarios', sitiosController_1.sitiosController.verVeterinarios);
+        this.router.post('/publicar/comercio', sitiosController_1.sitiosController.publicarComercios);
+        this.router.get('/getTipoComercio', sitiosController_1.sitiosController.getTipoComercio);
+        this.router.get('/getTipoAll', sitiosController_1.sitiosController.getTipoAll);
+        this.router.post('/resultBusqueda', sitiosController_1.sitiosController.buscador);
     }
 }
 const sitiosRoutes = new SitiosRoutes();
