@@ -132,6 +132,16 @@ class SitiosController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=? AND id_ciudad=?', [req.body.id_tipo, req.body.id_ciudad]);
+            console.log("controlador", listado);
+            res.send(listado);
+        });
+    }
+    getBuscador(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("esto", req.body);
+            console.log(req.body.id_tipo);
+            console.log("aqui", req.body[0]);
+            const listado = yield database_1.default.query('SELECT nombre, descripcion, precio, telefono, web FROM sitios WHERE id_tipo=? AND id_ciudad=?', [req.body[0], req.body[1]]);
             console.log(listado);
             res.send(listado);
         });

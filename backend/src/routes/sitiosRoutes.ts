@@ -28,6 +28,7 @@ class SitiosRoutes {
         this.router.get('/getTipoComercio', sitiosController.getTipoComercio);
         this.router.get('/getTipoAll', sitiosController.getTipoAll);
         this.router.post('/resultBusqueda', sitiosController.buscador);
+        this.router.post('/busqueda', sitiosController.getBuscador);
 
     }
 }

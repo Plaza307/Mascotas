@@ -24,6 +24,7 @@ class SitiosRoutes {
         this.router.get('/getTipoComercio', sitiosController_1.sitiosController.getTipoComercio);
         this.router.get('/getTipoAll', sitiosController_1.sitiosController.getTipoAll);
         this.router.post('/resultBusqueda', sitiosController_1.sitiosController.buscador);
+        this.router.post('/busqueda', sitiosController_1.sitiosController.getBuscador);
     }
 }
 const sitiosRoutes = new SitiosRoutes();
