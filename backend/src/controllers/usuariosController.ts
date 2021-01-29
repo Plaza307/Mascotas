@@ -14,8 +14,9 @@ class UsuarioController {
 
     public async create(req: Request, res: Response) {
 
-        const passwordHash = bcrypt.hashSyncs(req.body.password, 10);
-        const respuesta = await pool.query('insert into usuarios set ?', [passwordHash]);
+        
+        req.body.password = bcrypt.hashSyncs(req.body.password, 10);
+        const respuesta = await pool.query('insert into usuarios set ?', [req.body]);
 
         if (respuesta.insertId > 0) {
             res.json("Usuario insertado");

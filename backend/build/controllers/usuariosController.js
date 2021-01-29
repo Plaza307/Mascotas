@@ -23,8 +23,8 @@ class UsuarioController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const passwordHash = bcrypt.hashSyncs(req.body.password, 10);
-            const respuesta = yield database_1.default.query('insert into usuarios set ?', [passwordHash]);
+            req.body.password = bcrypt.hashSyncs(req.body.password, 10);
+            const respuesta = yield database_1.default.query('insert into usuarios set ?', [req.body]);
             if (respuesta.insertId > 0) {
                 res.json("Usuario insertado");
             }
