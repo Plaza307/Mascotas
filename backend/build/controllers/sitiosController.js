@@ -20,6 +20,14 @@ class SitiosController {
     index(req, res) {
         res.json({ 'message': 'Estas en sitios' });
     }
+    updateAlojamientos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const idSitio = req.params.id_sitio;
+            const listado = yield database_1.default.query('UPDATE sitios SET ? where id_sitio=?', [req.params, idSitio]);
+            console.log(listado);
+            res.send(listado);
+        });
+    }
     /************************************CRUD DE ALOJAMIENTOS************************************************************* */
     verAlojamientos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {

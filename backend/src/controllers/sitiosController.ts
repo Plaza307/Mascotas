@@ -10,6 +10,14 @@ class SitiosController {
     ) {
         res.json({ 'message': 'Estas en sitios' });
     }
+
+    public async updateAlojamientos(req: Request, res: Response) {
+        const idSitio = req.params.id_sitio
+        const listado = await pool.query('UPDATE sitios SET ? where id_sitio=?', [req.params, idSitio]);
+        
+        console.log(listado);
+        res.send(listado);
+    }
 /************************************CRUD DE ALOJAMIENTOS************************************************************* */
     public async verAlojamientos(req: Request, res: Response) {
         const listado = await pool.query('SELECT * FROM sitios WHERE id_tipo=1 OR id_tipo=4 OR id_tipo=5');

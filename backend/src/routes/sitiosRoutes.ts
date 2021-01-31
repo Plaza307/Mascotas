@@ -18,6 +18,8 @@ class SitiosRoutes {
         this.router.post('/publicar/alojamiento', sitiosController.publicarAlojamientos);
         this.router.get('/listarCiudades', sitiosController.listarCiudades);
         this.router.get('/getTipoSitio', sitiosController.getTipoSitio);
+        
+        this.router.put('/:id', sitiosController.updateAlojamientos);
 
         
         this.router.get('/comercios', sitiosController.verComercios);
