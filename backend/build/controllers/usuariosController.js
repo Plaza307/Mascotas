@@ -46,7 +46,7 @@ class UsuarioController {
             const idUser = req.params.id;
             console.log("id usuario controlador", idUser);
             const idUserValue = Number.parseInt(idUser);
-            const respuesta = yield database_1.default.query('UPDATE usuarios SET (?) WHERE id_usuario=?' + [idUserValue], user);
+            const respuesta = yield database_1.default.query('UPDATE usuarios SET ? WHERE id_usuario=?', [user, idUserValue]);
             if (respuesta.affectedRows > 0) {
                 res.json("Usuario actualizado");
             }
