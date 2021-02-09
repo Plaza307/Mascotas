@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import pool from '../database';
+import { UsuariosService } from '../../../frontend/src/app/services/usuarios.service';
+import { Usuario } from '../../../frontend/src/app/modelos/usuario';
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = 'mascotoken';
@@ -25,16 +27,24 @@ class UsuarioController {
         }
     }
 
-    public async read(req: Request, res: Response) {
-        const usuarios = await pool.query('SELECT * FROM usuarios', [req.body]);
+    public async getAll(req: Request, res: Response) {
+        const usuarios = await pool.query('SELECT * FROM usuarios');
 
         res.json(usuarios);
     }
 
 
     public async update(req: Request, res: Response) {
-        const idUsuario = req.params.id;
-        const respuesta = await pool.query('update usuarios set ? where id=?', [req.params, idUsuario]);
+
+        const user: Usuario = req.body;
+        console.log("usuario controlador", user);
+        
+        const idUser: string = req.params.id;
+        console.log("id usuario controlador", idUser);
+
+        const idUserValue: number = Number.parseInt(idUser);
+
+        const respuesta = await pool.query('UPDATE usuarios SET (?) WHERE id_usuario=?'+ [idUserValue], user);
 
         if (respuesta.affectedRows > 0) {
             res.json("Usuario actualizado");
@@ -45,7 +55,8 @@ class UsuarioController {
 
     public async delete(req: Request, res: Response) {
         const idUsuario = req.params.id;
-        const respuesta = await pool.query('delete from usuarios where id_usuario=?', [idUsuario]);
+        console.log("id del usuario controlador", idUsuario);
+        const respuesta = await pool.query('DELETE FROM usuarios WHERE id_usuario=?', [idUsuario]);
 
         if (respuesta.affectedRows > 0) {
             res.json("Usuario eliminado");

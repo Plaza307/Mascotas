@@ -41,8 +41,12 @@ class UsuarioController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const idUsuario = req.params.id;
-            const respuesta = yield database_1.default.query('update usuarios set ? where id=?', [req.params, idUsuario]);
+            const user = req.body;
+            console.log("usuario controlador", user);
+            const idUser = req.params.id;
+            console.log("id usuario controlador", idUser);
+            const idUserValue = Number.parseInt(idUser);
+            const respuesta = yield database_1.default.query('UPDATE usuarios SET (?) WHERE id_usuario=?' + [idUserValue], user);
             if (respuesta.affectedRows > 0) {
                 res.json("Usuario actualizado");
             }
@@ -54,7 +58,8 @@ class UsuarioController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const idUsuario = req.params.id;
-            const respuesta = yield database_1.default.query('delete from usuarios where id_usuario=?', [idUsuario]);
+            console.log("id del usuario controlador", idUsuario);
+            const respuesta = yield database_1.default.query('DELETE FROM usuarios WHERE id_usuario=?', [idUsuario]);
             if (respuesta.affectedRows > 0) {
                 res.json("Usuario eliminado");
             }
