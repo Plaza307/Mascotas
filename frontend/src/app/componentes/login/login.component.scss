@@ -1,11 +1,11 @@
 .fichaLogin {
     margin-top: 200px;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(155, 154, 154, 0.3);
     align-items: center;
     align-content: center;
     justify-content: space-around;
-    width: 60%;
+    width: auto;
     min-height: 100px;
     margin: auto;
     padding: 2%;
@@ -26,4 +26,30 @@
 
 .formularioLogin {
     display: flex;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+
+.boton {
+    background-color: #9E5B01;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background-color: #5F3700;
+}
+
+.boton:active {
+    position: relative;
+    top: 1px;
 }

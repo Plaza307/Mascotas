@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Registroalojamiento } from '../modelos/registroAlojamiento';
+import { RegistroSitios } from '../modelos/registroAlojamiento';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +10,36 @@ export class HotelesService {
 
   constructor(private http: HttpClient) { }
 
+  updateAlojamientos(alojamientoM: RegistroSitios): Observable<any> {
+    return this.http.put('http://localhost:3000/sitios/', alojamientoM);
+  }
   getAlojamientos(): Observable<any> {
-    return this.http.get('http://localhost:3000/alojamientos');
+    return this.http.get('http://localhost:3000/sitios/alojamientos');
   }
 
   getApartamentos(): Observable<any> {
-    return this.http.get('http://localhost:3000/apartamentos');
+    return this.http.get('http://localhost:3000/sitios/apartamentos');
   }
   getCampings(): Observable<any> {
-    return this.http.get('http://localhost:3000/campings');
+    return this.http.get('http://localhost:3000/sitios/campings');
   }
   getHoteles(): Observable<any> {
-    return this.http.get('http://localhost:3000/hoteles');
+    return this.http.get('http://localhost:3000/sitios/hoteles');
   }
-  publicarAlojamiento(alojamientoM: Registroalojamiento): Observable<any> {
-    return this.http.post('http://localhost:3000/publicar/alojamiento', alojamientoM);
-  }
-  //hacer el modelo para el resgitro de hoteles y meterlo como parametro
+  publicarAlojamiento(alojamientoM: RegistroSitios): Observable<any> {
+    
+    return this.http.post('http://localhost:3000/sitios/publicar/alojamiento/', alojamientoM);
+  } 
+
+  listarCiudades(): Observable<any> {
+    return this.http.get('http://localhost:3000/sitios/listarCiudades');
+  } 
+
+  listarTipoSitios(): Observable<any> {
+    return this.http.get('http://localhost:3000/sitios/getTipoSitio');
+  } 
+
+  getUsuario() {
+    return localStorage.getItem('id');
+  } 
 }

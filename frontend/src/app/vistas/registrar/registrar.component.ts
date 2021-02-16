@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Registrousuario } from 'src/app/modelos/registrousuario';
+import { RegistroUsuario } from 'src/app/modelos/registrousuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.component.html',
@@ -13,16 +12,17 @@ import { Validators } from '@angular/forms';
 export class RegistrarComponent implements OnInit {
 
   private formularioRegistro: FormGroup;
-  private modeloRegistro: Registrousuario;
+  private modeloRegistro: RegistroUsuario;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private servicioUsuario: UsuariosService) {
     this.formularioRegistro = formBuilder.group({
-      nombre: ['', [Validators.required]],
-      apellidos: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      telefono: [''],
-      f_nac: ['', [Validators.required]]
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      apellidos: ['', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      telefono: ['', [Validators.minLength(9)]],
+      f_nac: ['', [Validators.required]],
+      tipo_usuario: ['ROLE_USER']
     });
    }
 
@@ -38,7 +38,6 @@ export class RegistrarComponent implements OnInit {
         } else {
           this.router.navigate(['/registrar']);
         }
-        console.log(res);
       },
       err => {
         console.log(err);
@@ -69,6 +68,9 @@ export class RegistrarComponent implements OnInit {
 
   get f_nac() {
     return this.formularioRegistro.get('f_nac');
+  }
+  get tipo_usuario() {
+    return this.formularioRegistro.get('tipo_usuario');
   }
 
 }

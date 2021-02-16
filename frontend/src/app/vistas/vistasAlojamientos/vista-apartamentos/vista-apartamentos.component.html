@@ -1,8 +1,16 @@
 <div class="contenedor_apartamentos">
-    <h1>Top apartamentos penínsulares</h1>
+    <div class="title">
+        <h1>Top apartamentos penínsulares</h1><br>
+    </div>
+
+
     <div class="apartamento" *ngFor="let apartamentos of listaApartamentos">
 
         <h2>{{ apartamentos.nombre}}</h2>
-        <h2>{{ apartamentos.descripcion}}</h2><br>
+        <h6>{{ apartamentos.descripcion}}</h6><br>
+        <h6>{{ apartamentos.precio}}€</h6><br>
+        <h6>{{ apartamentos.telefono}}</h6><br>
+        <h6>{{ apartamentos.web}}</h6><br>
     </div>
+
 </div>

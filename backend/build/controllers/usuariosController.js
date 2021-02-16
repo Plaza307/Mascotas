@@ -12,15 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.usuariosController = void 0;
 const database_1 = __importDefault(require("../database"));
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'Co-Vid19';
+const SECRET_KEY = 'mascotoken';
 class UsuarioController {
     index(req, res) {
         res.json({ 'message': 'Estas en Usuario' });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            req.body.password = bcrypt.hashSync(req.body.password, 10);
             const respuesta = yield database_1.default.query('insert into usuarios set ?', [req.body]);
             if (respuesta.insertId > 0) {
                 res.json("Usuario insertado");
@@ -30,16 +33,20 @@ class UsuarioController {
             }
         });
     }
-    read(req, res) {
+    getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuarios', [req.body]);
+            const usuarios = yield database_1.default.query('SELECT * FROM usuarios');
             res.json(usuarios);
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const idUsuario = req.params.id;
-            const respuesta = yield database_1.default.query('update usuarios set ? where id=?', [req.params, idUsuario]);
+            const user = req.body;
+            console.log("usuario controlador", user);
+            const idUser = req.params.id;
+            console.log("id usuario controlador", idUser);
+            const idUserValue = Number.parseInt(idUser);
+            const respuesta = yield database_1.default.query('UPDATE usuarios SET ? WHERE id_usuario=?', [user, idUserValue]);
             if (respuesta.affectedRows > 0) {
                 res.json("Usuario actualizado");
             }
@@ -51,7 +58,8 @@ class UsuarioController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const idUsuario = req.params.id;
-            const respuesta = yield database_1.default.query('delete from usuarios where id_usuario=?', [idUsuario]);
+            console.log("id del usuario controlador", idUsuario);
+            const respuesta = yield database_1.default.query('DELETE FROM usuarios WHERE id_usuario=?', idUsuario);
             if (respuesta.affectedRows > 0) {
                 res.json("Usuario eliminado");
             }
@@ -60,7 +68,7 @@ class UsuarioController {
             }
         });
     }
-    readOne(req, res) {
+    getUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const idUsuario = req.params.id;
             const usuario = yield database_1.default.query('SELECT * FROM usuarios WHERE id_usuario=?', [idUsuario]);
@@ -69,14 +77,21 @@ class UsuarioController {
     }
     readLogin(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield database_1.default.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
-            if (usuario.length == 0) {
-                res.send([false]);
+            // // const passwordHash = bcrypt.hashSync(req.body.password, 10);
+            // console.log("password encriptada ",passwordHash)
+            const usuario = yield database_1.default.query('SELECT password FROM usuarios WHERE email=?', [req.body.email]);
+            const ValorLogin = req.body.password;
+            const ValorBD = usuario[0].password;
+            // const passwordCrypt = bcrypt.hashSync(ValorLogin, salt)
+            const comparacion1 = bcrypt.compareSync(ValorLogin, ValorBD);
+            if (comparacion1 == true) {
+                const user = yield database_1.default.query('SELECT * FROM usuarios WHERE email=? ', [req.body.email]);
+                const expiraEn = 24 * 60 * 60;
+                const accessToken = jwt.sign({ id: user.email }, SECRET_KEY, { expiresIn: expiraEn });
+                res.send([user[0], accessToken]);
             }
             else {
-                const expiraEn = 24 * 60 * 60;
-                const accessToken = jwt.sign({ id: usuario.email }, SECRET_KEY, { expiresIn: expiraEn });
-                res.send([usuario[0], accessToken]);
+                res.send(false);
             }
         });
     }

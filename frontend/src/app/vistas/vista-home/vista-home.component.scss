@@ -18,10 +18,8 @@
     grid-area: opciones;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    align-content: center;
     justify-content: space-around;
-    width: 60%;
+    width: 40%;
     min-height: 100px;
     margin: auto;
     padding: 2%;
@@ -36,4 +34,8 @@
 
 #myModal {
     background: rgba(252, 252, 252, 0.5);
+}
+
+.formularioBusqueda {
+    display: flex;
 }

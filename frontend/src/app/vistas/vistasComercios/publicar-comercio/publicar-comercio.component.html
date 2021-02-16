@@ -1,0 +1,65 @@
+<div class="contenedor">
+    <div class="fichaRegistro">
+        <h3>Registro de comercios</h3>
+        <div class="formularioAlojamiento">
+            <form [formGroup]="formularioRegistroComercios" (submit)="submit()">
+                <label> Nombre del comercio: </label> <input type="text" formControlName="nombre" required><br>
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+
+                    <div *ngIf="nombre.errors.required">
+                        El nombre del sitio es obligatorio.
+                    </div>
+                </div>
+                <label>Descripcion: </label><input type="textarea" formControlName="descripcion" required><br>
+                <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+
+                    <div *ngIf="descripcion.errors.required">
+                        Debes realizar una breve descripción del sitio.
+                    </div>
+                </div>
+
+                <label>Precio: </label> <input type="number" formControlName="precio"><br>
+                <div *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+                </div>
+
+                <label> Capacidad: </label><input type="number" formControlName="capacidad"><br>
+                <div *ngIf="capacidad.invalid && (capacidad.dirty || capacidad.touched)">
+                </div>
+
+                <label> Telefono: </label><input type="number" formControlName="telefono"><br>
+                <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+
+                    <div *ngIf="telefono.errors.required">
+                        Debes introducir un teléfono de contacto.
+                    </div>
+                </div>
+
+                <label>Web: </label> <input type="text" formControlName="web"><br>
+                <div *ngIf="web.invalid && (web.dirty || web.touched)">
+                </div>
+
+
+
+                <label>Foto:</label> <input type="file" formControlName="foto">
+                <div *ngIf="foto.invalid && (foto.dirty || foto.touched)">
+                </div><br>
+                <!--------------- Select de los paises------------------->
+                <label>Ciudad: </label>
+                <label>
+                    <select formControlName="id_ciudad">
+                    <option  *ngFor="let ciudades of listaCiudades" value="{{ciudades.id_ciudad}}">{{ciudades.provincia}}</option>
+                    </select>
+                </label><br>
+                <label>Tipo sitios: </label>
+                <label>
+                    <select formControlName="id_tipo">
+                    <option  *ngFor="let tipoSitio of listaTipoSitios" value="{{tipoSitio.id_tipositio}}">{{tipoSitio.nombre}}</option>
+                    </select>
+                </label>
+
+                <br><button type="submit" class="boton" [disabled]="!formularioRegistroComercios.valid">Enviar</button>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -4,12 +4,13 @@
 
         <div class="formulariologin">
             <form [formGroup]="formLogin" (submit)="submit()">
-                Email: <input type="text" formControlName="email"> Contraseña: <input type="text" formControlName="password">
+                <label><img src="../../../assets/img/usuario (1).png"></label><input type="text" formControlName="email" placeholder="Email"><br>
+                <label><img src="../../../assets/img/contrasena.png"></label> <input type="password" formControlName="password" placeholder="Contraseña"><br>
 
-                <button type="submit" [disabled]="!formLogin.valid">Enviar</button>
+                <button type="submit" class="boton" [disabled]="!formLogin.valid">Enviar</button>
 
             </form>
         </div>
-        <a href="/registrar">Registrarme</a>
+        <a href="/registrar" class="boton">Registro</a>
     </div>
 </div>

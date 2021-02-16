@@ -1,5 +1,31 @@
 .contenedor_campings {
     margin: 10px auto;
-    background-color: rgba(0, 0, 0, 0.5);
     color: white;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    display: inline-block;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr;
+    grid-template-areas: "cabecera" "cuerpo";
+    padding-left: 10px;
+}
+
+.campings {
+    display: inline-block;
+    background-color: rgba(15, 15, 15, 0.89);
+    border: 2px rgb(7, 7, 7) solid;
+    border-radius: 4px;
+    width: fit-content;
+    font: bold 90% monospace;
+    grid-area: cuerpo;
+    margin: 10px;
+    font-size: 17px;
+    max-width: 420px;
+}
+
+.title {
+    grid-area: cabecera;
+    font: bold 90% monospace;
 }

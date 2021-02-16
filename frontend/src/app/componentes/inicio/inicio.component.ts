@@ -10,6 +10,8 @@ export class InicioComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
   }
 
 }

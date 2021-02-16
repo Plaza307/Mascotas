@@ -5,7 +5,7 @@
     align-items: center;
     align-content: center;
     justify-content: space-around;
-    width: 60%;
+    width: 50%;
     min-height: 100px;
     margin: auto;
     padding: 2%;
@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     align-content: center;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .fichaRegistrar h1 {
@@ -26,4 +26,9 @@
 
 .formularioRegistrar {
     display: flex;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
 }

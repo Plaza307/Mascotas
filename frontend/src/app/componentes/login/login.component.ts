@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/modelos/usuario';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private formBuilder: FormBuilder, private servicioUsuario: UsuariosService) {
     this.formLogin = formBuilder.group({
-      email: [''],
-      password: ['']
+      email: ['',[Validators.required]],
+      password:  ['', [Validators.required]]
     });
    }
 
@@ -28,11 +29,11 @@ export class LoginComponent implements OnInit {
   submit() {
     this.servicioUsuario.getLogin(this.formLogin.value).subscribe(
       res => {
-        console.log(res);
-
-        if (res[0]) {
+        if (res) {
           this.router.navigate(['/inicio']);
           localStorage.setItem('token', res[1]);
+          localStorage.setItem('id', res[0].id_usuario);
+          localStorage.setItem('ROLE', res[0].tipo_usuario);
         } else {
           this.router.navigate(['/login']);
           alert('El login es incorrecto, revisa el email y el password');
@@ -40,7 +41,16 @@ export class LoginComponent implements OnInit {
       },
       err => {
         console.log(err);
+        
       }
     );
   }
-}
+
+  logout() {
+          localStorage.removeItem('token');
+          localStorage.removeItem('id');
+          this.router.navigate(['/login']);
+        }
+
+  }
+

@@ -9,7 +9,7 @@
     <!------------------------------- Div de Hoteles ------------------------------------>
     <div class="collapse navbar-collapse" id="navbarHoteles">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-warning"><a href="/alojamientos">Alojamiento</a></button>
+            <button type="button" class="btn btn-warning"><a href="/alojamientos">Alojamientos</a></button>
             <div class="btn-group " role="group">
                 <button id="hotelesNav" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu hidden" aria-labelledby="hotelesNav" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
@@ -21,40 +21,21 @@
             </div>
         </div>
     </div>
-    <!------------------------------- Div de Restaurantes -------------------------------->
+    <!------------------------------- Div de Comercios -------------------------------->
     <div class="collapse navbar-collapse" id="navbarRestaurantes">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-warning">Restaurantes</button>
+            <button type="button" class="btn btn-warning"><a href="/comercios">Comercios</a></button>
             <div class="btn-group" role="group">
                 <button id="restaurantesNav" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu hidden" aria-labelledby="restaurantesNav" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                    <a class="dropdown-item" id="newPost" href="#">Publicar nuevo restaurante</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!------------------------------- Div de Actividades -------------------------------->
-    <div class="collapse navbar-collapse" id="navbarActividades">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-warning">Actividades</button>
-            <div class="btn-group" role="group">
-                <button id="actividadesNav" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <div class="dropdown-menu hidden" aria-labelledby="actividadesNav" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                    <a class="dropdown-item" id="newPost" href="#">Playas</a>
-                    <a class="dropdown-item" id="newPost" href="#">Parques</a>
-                    <a class="dropdown-item" id="newPost" href="#">Tiendas de animales</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!------------------------------- Div de Consejos -------------------------------->
-    <div class="collapse navbar-collapse" id="navbarConsejos">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-warning">Consejos</button>
-            <div class="btn-group" role="group">
-                <button id="consejosNav" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <div class="dropdown-menu hidden" aria-labelledby="consejosNav" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                    <a class="dropdown-item" id="newPost" href="#">Publicar nuevo consejo</a>
+                    <a class="dropdown-item" id="restaurante" href="/restaurantes">Restaurantes</a>
+
+
+
+
+                    <a class="dropdown-item" id="tienda" href="/tiendas">Tienda de animales</a>
+                    <a class="dropdown-item" id="veterinario" href="/veterinarios">Veterinarios</a>
+                    <a class="dropdown-item" id="newPost" href="/publicar/comercio">Publicar nuevo restaurante</a>
                 </div>
             </div>
         </div>
@@ -63,9 +44,10 @@
     <!------------------------------- Div de login -------------------------------->
     <div class="collapse navbar-collapse" id="loginNav">
 
-        <a href="/login">
-            <img src="../../../assets/img/usuario.png">
-        </a>
+        <button (click)="ngClickRedirecciona()">
+            <img src="../../../assets/img/usuario.png" (click)="ngClickRedirecciona()">
+        </button>
+        <button type="button" class="btn-warning  btn oculto" id="btn-logOut" (click)="servicioUser.logOut()">Cerrar sesión</button>
     </div>
 
     <!----------------------------------->

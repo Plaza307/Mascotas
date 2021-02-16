@@ -1,4 +1,4 @@
-export interface Registroalojamiento {
+export interface RegistroSitios {
     id: number;
     nombre: string;
     descripcion: string;
@@ -8,5 +8,9 @@ export interface Registroalojamiento {
     valoracion: number;
     telefono: number;
     web: String;
-    //meter id_ciudad y id_tipo, el id_usuario lo coge del que este iniciada sesion
+    ciudad: String[];
+    id_ciudad: number;
+    id_tipo: number;
+    id_usuario: number;
+
 }

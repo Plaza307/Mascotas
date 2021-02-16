@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotelesService } from 'src/app/services/hoteles.service';
 
+
+
 @Component({
   selector: 'app-publicar-alojamiento',
   templateUrl: './publicar-alojamiento.component.html',
@@ -11,6 +13,10 @@ import { HotelesService } from 'src/app/services/hoteles.service';
 export class PublicarAlojamientoComponent implements OnInit {
 
   private formularioRegistroAlojamientos: FormGroup;
+  public listaCiudades: any;
+  public listaTipoSitios: any;
+  public usuarioLogged: any;
+
 
   constructor(private router: Router, private formBuilder: FormBuilder, private servicioHoteles: HotelesService) {
     this.formularioRegistroAlojamientos = formBuilder.group({
@@ -21,11 +27,22 @@ export class PublicarAlojamientoComponent implements OnInit {
       capacidad: [''],
       valoracion: [''],
       telefono: ['', [Validators.required]],
-      web: ['']
+      web: [''],
+      id_ciudad: [''],
+      id_usuario: [localStorage.getItem('id')],
+      id_tipo:['']
+
     });
    }
 
   ngOnInit() {
+    if(localStorage.getItem('token')){
+      this.listarCiudades();
+      this.listarTipoSitios();
+    } else {
+      alert('Tienes que iniciar sesión para crear sitios')
+      this.router.navigate(['/login']);
+    }
   }
   submit() {
     this.servicioHoteles.publicarAlojamiento(this.formularioRegistroAlojamientos.value).subscribe(
@@ -43,6 +60,33 @@ export class PublicarAlojamientoComponent implements OnInit {
       }
     );
   }
+
+  listarCiudades() {
+    this.servicioHoteles.listarCiudades().subscribe(
+      res => {
+        this.listaCiudades= res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  usuario() {
+    res =>{
+      this.usuarioLogged=res
+    }
+  }
+  listarTipoSitios() {
+    this.servicioHoteles.listarTipoSitios().subscribe(
+      res => {
+        this.listaTipoSitios= res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
 
   get nombre() {
     return this.formularioRegistroAlojamientos.get('nombre');
@@ -73,6 +117,14 @@ export class PublicarAlojamientoComponent implements OnInit {
 
   get web() {
     return this.formularioRegistroAlojamientos.get('web');
+  }
+ 
+  get ciudades(){
+  return this.formularioRegistroAlojamientos.get('id_ciudad');
+  
+}
+  get tipoSitios(){
+    return this.formularioRegistroAlojamientos.get('id_tipo');
   }
 
 }

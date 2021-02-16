@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import pool from '../database';
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const SECRET_KEY='Co-Vid19'
+const SECRET_KEY = 'mascotoken';
 
 class UsuarioController {
     index(
@@ -12,6 +13,9 @@ class UsuarioController {
     }
 
     public async create(req: Request, res: Response) {
+
+        
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
         const respuesta = await pool.query('insert into usuarios set ?', [req.body]);
 
         if (respuesta.insertId > 0) {
@@ -21,16 +25,24 @@ class UsuarioController {
         }
     }
 
-    public async read(req: Request, res: Response) {
-        const usuarios = await pool.query('SELECT * FROM usuarios', [req.body]);
+    public async getAll(req: Request, res: Response) {
+        const usuarios = await pool.query('SELECT * FROM usuarios');
 
         res.json(usuarios);
     }
 
 
     public async update(req: Request, res: Response) {
-        const idUsuario = req.params.id;
-        const respuesta = await pool.query('update usuarios set ? where id=?', [req.params, idUsuario]);
+
+        const user = req.body;
+        console.log("usuario controlador", user);
+        
+        const idUser: string = req.params.id;
+        console.log("id usuario controlador", idUser);
+
+        const idUserValue: number = Number.parseInt(idUser);
+
+        const respuesta = await pool.query('UPDATE usuarios SET ? WHERE id_usuario=?', [user, idUserValue]);
 
         if (respuesta.affectedRows > 0) {
             res.json("Usuario actualizado");
@@ -41,7 +53,9 @@ class UsuarioController {
 
     public async delete(req: Request, res: Response) {
         const idUsuario = req.params.id;
-        const respuesta = await pool.query('delete from usuarios where id_usuario=?', [idUsuario]);
+        console.log("id del usuario controlador", idUsuario);
+        const respuesta = await pool.query('DELETE FROM usuarios WHERE id_usuario=?', idUsuario);
+        
 
         if (respuesta.affectedRows > 0) {
             res.json("Usuario eliminado");
@@ -50,8 +64,10 @@ class UsuarioController {
         }
     }
 
+    
 
-    public async readOne(req: Request, res: Response) {
+
+    public async getUser(req: Request, res: Response) {
         const idUsuario = req.params.id;
 
         const usuario = await pool.query('SELECT * FROM usuarios WHERE id_usuario=?', [idUsuario]);
@@ -60,20 +76,28 @@ class UsuarioController {
     }
 
     public async readLogin(req: Request, res: Response) {
-        const usuario = await pool.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
-        
-        if(usuario.length == 0){
-            res.send([false]);
-        } else{
-            const expiraEn=24*60*60;
-            const accessToken=jwt.sign({id: usuario.email},
-                                        SECRET_KEY,{expiresIn: expiraEn});
+        // // const passwordHash = bcrypt.hashSync(req.body.password, 10);
+        // console.log("password encriptada ",passwordHash)
+        const usuario = await pool.query('SELECT password FROM usuarios WHERE email=?', [req.body.email])
 
-            res.send([usuario[0], accessToken]);
+        
+        const ValorLogin=req.body.password;
+
+        const ValorBD = usuario[0].password
+
+        // const passwordCrypt = bcrypt.hashSync(ValorLogin, salt)
+        const comparacion1 = bcrypt.compareSync(ValorLogin, ValorBD)
+        
+
+        if(comparacion1==true){
+            const user = await pool.query('SELECT * FROM usuarios WHERE email=? ', [req.body.email])
+
+            const expiraEn = 24 * 60 * 60;
+        const accessToken = jwt.sign({ id: user.email }, SECRET_KEY, { expiresIn: expiraEn });
+        res.send([user[0], accessToken]);
+        } else {
+            res.send(false);
         }
-    }
-
-        
 }
-
+}
 export const usuariosController = new UsuarioController();
