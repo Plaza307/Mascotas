@@ -95,5 +95,20 @@ class UsuarioController {
             }
         });
     }
+    restartPassword(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const passwordEncrypt = bcrypt.hashSync(req.body.password, 10);
+            const idUser = req.params.id;
+            const idUserValue = Number.parseInt(idUser);
+            console.log(passwordEncrypt);
+            const respuesta = yield database_1.default.query('UPDATE usuarios set password = ? WHERE id_usuario=?', [passwordEncrypt, idUserValue]);
+            if (respuesta.insertId > 0) {
+                res.json("Contraseña cambiada");
+            }
+            else {
+                res.json("Fallo al cambiar la contraseña");
+            }
+        });
+    }
 }
 exports.usuariosController = new UsuarioController();

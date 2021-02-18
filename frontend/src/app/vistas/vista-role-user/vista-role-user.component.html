@@ -8,6 +8,7 @@
         <h2>{{ user.f_nac}}</h2><br>
         <div class="btn btn-primary" (click)="ngOcultarFormulario(user.id_usuario) || ngMostrarFormulario(user.id_usuario)">Editar</div>
         <div class="btn btn-primary" (click)="ngBorrarUsuario(user.id_usuario)">Eliminar</div>
+        <div class="btn btn-primary" (click)="ngOcultarFormulario1(user.id_usuario) || ngMostrarFormulario1(user.id_usuario)">Cambiar contraseña</div>
     </div>
 
     <div id="{{user.id_usuario}}" class="formularioOculto usuarios">
@@ -28,6 +29,14 @@
 
 
             <br><button type="submit" class="btb btn-primary">Guardar cambios</button>
+
+        </form>
+    </div>
+    <div id="password{{user.id_usuario}}" class="formularioOculto usuarios">
+        <form [formGroup]="formularioPassword" (submit)="ngRestartPassword(user.id_usuario)">
+            <label>Contraseña: </label> <input type="password" formControlName="password"><br>
+
+            <br><button type="submit" class="btb btn-primary" (click)="ngRestartPassword(user.id_usuario)">Guardar contraseña</button>
 
         </form>
     </div>

@@ -13,6 +13,7 @@ declare var $: any;
 export class VistaRoleUserComponent implements OnInit {
 
   private formularioUpdate: FormGroup;
+  private formularioPassword: FormGroup;
   listaCampos:any;
 
   
@@ -26,6 +27,12 @@ export class VistaRoleUserComponent implements OnInit {
       f_nac: ['']
 
     });
+
+    this.formularioPassword = formBuilder.group({
+      password: ['', [Validators.required]]
+    });
+
+
    }
 
   ngOnInit() {
@@ -79,15 +86,45 @@ export class VistaRoleUserComponent implements OnInit {
     );
   }}
 
+  ngRestartPassword(id_usuario:any){
+this.servicioUsuarios.updatePassword(this.formularioPassword.value, id_usuario).subscribe(
+  res => {
+    console.log("respuesta del component", res);
+    if (res) {
+      alert('Contraseña actualizada correctamente');
+      this.router.navigate(['/vistaRoleUser']);
+      this.ngOnInit();
+    } else {
+      alert('No se ha podido actualizar la contraseña');
+      this.router.navigate(['/vistaRoleUser']);
+    }
+    console.log(res);
+  },
+  err => {
+    console.log(err);
+  }
+);
+  }
+
   ngOcultarFormulario(id_usuario:any){
-    console.log(id_usuario);
-    
     $("#"+id_usuario).removeClass("formularioOculto");
     $("#vista"+id_usuario).removeClass("formularioMostrar");
+    $("#password"+id_usuario).removeClass("formularioMostrar");
   }
 
   ngMostrarFormulario(id_usuario:any){
     $("#"+id_usuario).addClass("formularioMostrar");
     $("#vista"+id_usuario).addClass("formularioOculto");
+    $("#password"+id_usuario).addClass("formularioOculto");
+  }
+  ngOcultarFormulario1(id_usuario:any){
+    $("#vista"+id_usuario).removeClass("formularioMostrar");
+    $("#password"+id_usuario).removeClass("formularioOculto");
+  }
+
+  ngMostrarFormulario1(id_usuario:any){
+    
+    $("#vista"+id_usuario).addClass("formularioOculto");
+    $("#password"+id_usuario).addClass("formularioMostrar");
   }
 }

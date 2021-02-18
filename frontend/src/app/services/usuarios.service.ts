@@ -38,6 +38,11 @@ export class UsuariosService {
   updateUser(usuario: Usuario, id_usuario:any): Observable<any> {
     return this.http.put('http://localhost:3000/usuarios/'+ id_usuario, usuario);
   }
+  updatePassword(password: Usuario, id_usuario:any): Observable<any> {
+    console.log("contraseña", password);
+    console.log("id usuario", id_usuario);
+    return this.http.put('http://localhost:3000/usuarios/restartPass/'+ id_usuario, password);
+  }
 
   logIn() {
     return !!localStorage.getItem('id');
