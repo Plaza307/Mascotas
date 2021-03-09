@@ -12,11 +12,21 @@ class SitiosController {
     }
 
     public async updateAlojamientos(req: Request, res: Response) {
-        const idSitio = req.params.id_sitio
-        const listado = await pool.query('UPDATE sitios SET ? where id_sitio=?', [req.params, idSitio]);
+        const alojamiento = req.body;
+        console.log("usuario controlador", alojamiento);
         
-        console.log(listado);
-        res.send(listado);
+        const idSitio: string = req.params.id;
+        console.log("id sitio controlador", idSitio);
+
+        const idSitioValue: number = Number.parseInt(idSitio);
+
+        const respuesta = await pool.query('UPDATE sitios SET ? WHERE id_sitio=?', [alojamiento, idSitioValue]);
+
+        if (respuesta.affectedRows > 0) {
+            res.json("Sitio actualizado");
+        } else {
+            res.json("Fallo al actualizar el sitio");
+        }
     }
 /************************************CRUD DE ALOJAMIENTOS************************************************************* */
     public async verAlojamientos(req: Request, res: Response) {

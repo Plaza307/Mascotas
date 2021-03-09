@@ -10,8 +10,8 @@ export class HotelesService {
 
   constructor(private http: HttpClient) { }
 
-  updateAlojamientos(alojamientoM: RegistroSitios): Observable<any> {
-    return this.http.put('http://localhost:3000/sitios/', alojamientoM);
+  updateAlojamientos(alojamiento: RegistroSitios, id_sitio:any): Observable<any> {
+    return this.http.put('http://localhost:3000/sitios/'+ id_sitio, alojamiento);
   }
   getAlojamientos(): Observable<any> {
     return this.http.get('http://localhost:3000/sitios/alojamientos');

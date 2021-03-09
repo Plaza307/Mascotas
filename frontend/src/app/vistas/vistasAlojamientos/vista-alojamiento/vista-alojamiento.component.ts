@@ -14,6 +14,8 @@ declare var $: any;
 export class VistaAlojamientoComponent implements OnInit {
   private formularioUpdate: FormGroup;
   public listaAlojamientos: any;
+  public listaCiudades: any;
+  public listaTipoSitios: any;
   constructor(private router: Router, private FormBuilder: FormBuilder, private servicioHoteles: HotelesService) {
     this.formularioUpdate = FormBuilder.group({
       nombre: [''],
@@ -31,6 +33,15 @@ export class VistaAlojamientoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listarCiudades();
+    this.listarTipoSitios();
+    // if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_ADMIN'){
+    //  alert('El usuario puede editar todos los sitios')
+    // }else if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_USER') {
+    //   alert('El usuario tiene token pero solo puede editar los sitios que él ha creado')
+    // } else {
+    //   alert('No tiene token')
+    // }
 
     this.servicioHoteles.getAlojamientos().subscribe(
       res => {
@@ -43,14 +54,62 @@ export class VistaAlojamientoComponent implements OnInit {
     );
   }
 
-  ngOcultarFormulario(id_sitio:any){
-    console.log(id_sitio);
-    
-    $("#"+id_sitio).removeClass("formularioOculto");
+  submit(id_sitio:any) {
+    this.servicioHoteles.updateAlojamientos(this.formularioUpdate.value, id_sitio).subscribe(
+      res => {
+        if (res) {
+          alert('Alojamiento actualizado correctamente');
+          this.router.navigate(['/alojamientos']);
+          this.ngOnInit;
+        } else {
+          alert('No se ha podido actualizar el alojamiento');
+          this.router.navigate(['/alojamientos']);
+        }
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
-  ngMostrarFormulario(){
-    $("#divOculto").addClass("formularioOculto");
+      listarCiudades() {
+        this.servicioHoteles.listarCiudades().subscribe(
+          res => {
+            this.listaCiudades= res;
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+      listarTipoSitios() {
+        this.servicioHoteles.listarTipoSitios().subscribe(
+          res => {
+            this.listaTipoSitios= res;
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+
+  ngMostrarBoton(){
+    $("#botonEditar").removeClass("btnEditar")
+  }
+
+  ngOcultarBoton(){
+    $("#botonEditar").addClass("btnEditar");
+  }
+
+  ngOcultarFormulario(id_sitio:any){
+    $("#"+id_sitio).removeClass("formularioOculto");
+    $("#vista"+id_sitio).removeClass("formularioMostrar");
+  }
+
+  ngMostrarFormulario(id_sitio:any){
+    $("#"+id_sitio).addClass("formularioMostrar");
+    $("#vista"+id_sitio).addClass("formularioOculto");
   }
 
 

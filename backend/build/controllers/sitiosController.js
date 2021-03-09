@@ -22,10 +22,18 @@ class SitiosController {
     }
     updateAlojamientos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const idSitio = req.params.id_sitio;
-            const listado = yield database_1.default.query('UPDATE sitios SET ? where id_sitio=?', [req.params, idSitio]);
-            console.log(listado);
-            res.send(listado);
+            const alojamiento = req.body;
+            console.log("usuario controlador", alojamiento);
+            const idSitio = req.params.id;
+            console.log("id sitio controlador", idSitio);
+            const idSitioValue = Number.parseInt(idSitio);
+            const respuesta = yield database_1.default.query('UPDATE sitios SET ? WHERE id_sitio=?', [alojamiento, idSitioValue]);
+            if (respuesta.affectedRows > 0) {
+                res.json("Sitio actualizado");
+            }
+            else {
+                res.json("Fallo al actualizar el sitio");
+            }
         });
     }
     /************************************CRUD DE ALOJAMIENTOS************************************************************* */
