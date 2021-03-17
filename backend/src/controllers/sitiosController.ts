@@ -28,6 +28,18 @@ class SitiosController {
             res.json("Fallo al actualizar el sitio");
         }
     }
+
+    public async delete(req: Request, res: Response) {
+        const idSitio = req.params.id;
+        const respuesta = await pool.query('DELETE FROM sitios WHERE id_sitio=?', idSitio);
+        
+
+        if (respuesta.affectedRows > 0) {
+            res.json("Sitio eliminado");
+        } else {
+            res.json("Fallo al eliminar sitio");
+        }
+    }
 /************************************CRUD DE ALOJAMIENTOS************************************************************* */
     public async verAlojamientos(req: Request, res: Response) {
         const listado = await pool.query('SELECT * FROM sitios WHERE id_tipo=1 OR id_tipo=4 OR id_tipo=5');

@@ -87,6 +87,20 @@ export class VistaAlojamientoComponent implements OnInit {
     );
   }
 
+  ngBorrarSitio(id_sitio:any){
+    if(confirm('¿Estás seguro de borrarlo?')){
+    this.servicioHoteles.deleteSite(id_sitio).subscribe(
+      res => {
+        alert('Alojamiento borrado correctamente')
+        console.log(res);
+        this.router.navigate(['/alojamientos']);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }}
+
       listarCiudades() {
         this.servicioHoteles.listarCiudades().subscribe(
           res => {

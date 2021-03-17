@@ -17,6 +17,7 @@ class SitiosRoutes {
         this.router.get('/listarCiudades', sitiosController_1.sitiosController.listarCiudades);
         this.router.get('/getTipoSitio', sitiosController_1.sitiosController.getTipoSitio);
         this.router.put('/:id', sitiosController_1.sitiosController.updateAlojamientos);
+        this.router.delete('/:id', sitiosController_1.sitiosController.delete);
         this.router.get('/comercios', sitiosController_1.sitiosController.verComercios);
         this.router.get('/restaurantes', sitiosController_1.sitiosController.verRestaurantes);
         this.router.get('/tiendas', sitiosController_1.sitiosController.verTiendas);

@@ -36,6 +36,18 @@ class SitiosController {
             }
         });
     }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const idSitio = req.params.id;
+            const respuesta = yield database_1.default.query('DELETE FROM sitios WHERE id_sitio=?', idSitio);
+            if (respuesta.affectedRows > 0) {
+                res.json("Sitio eliminado");
+            }
+            else {
+                res.json("Fallo al eliminar sitio");
+            }
+        });
+    }
     /************************************CRUD DE ALOJAMIENTOS************************************************************* */
     verAlojamientos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {

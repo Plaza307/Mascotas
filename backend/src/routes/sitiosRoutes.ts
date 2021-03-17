@@ -20,6 +20,7 @@ class SitiosRoutes {
         this.router.get('/getTipoSitio', sitiosController.getTipoSitio);
         
         this.router.put('/:id', sitiosController.updateAlojamientos);
+        this.router.delete('/:id', sitiosController.delete);
 
         
         this.router.get('/comercios', sitiosController.verComercios);

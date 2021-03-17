@@ -5,6 +5,7 @@
         <h6 class="">{{ alojamiento.descripcion}}</h6><br>
         <div id=puedeEditar *ngIf="puedeEditar(alojamiento.id_usuario) == true">
             <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
+            <div class="btn btn-primary" (click)="ngBorrarSitio(alojamiento.id_sitio)">Borrar</div>
         </div>
 
 
