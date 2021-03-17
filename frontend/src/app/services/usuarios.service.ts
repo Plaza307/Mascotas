@@ -52,6 +52,7 @@ export class UsuariosService {
     if(localStorage.length > 0){
       localStorage.removeItem('token');
       localStorage.removeItem('id');
+      localStorage.removeItem('ROLE');
       alert('El usuario ha cerrado sesión');
       this.router.navigate(['/login']);
     } else {

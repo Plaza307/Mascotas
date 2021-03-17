@@ -35,13 +35,16 @@ export class VistaAlojamientoComponent implements OnInit {
   ngOnInit() {
     this.listarCiudades();
     this.listarTipoSitios();
-    // if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_ADMIN'){
-    //  alert('El usuario puede editar todos los sitios')
-    // }else if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_USER') {
-    //   alert('El usuario tiene token pero solo puede editar los sitios que él ha creado')
-    // } else {
-    //   alert('No tiene token')
-    // }
+    if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_ADMIN'){
+     alert('El usuario puede editar todos los sitios')
+    }else if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_USER'  ) {
+      alert('El usuario tiene token pero solo puede editar los sitios que él ha creado')
+    } else {
+      alert('No tiene token')
+
+     
+
+    }
 
     this.servicioHoteles.getAlojamientos().subscribe(
       res => {
@@ -54,7 +57,18 @@ export class VistaAlojamientoComponent implements OnInit {
     );
   }
 
+  puedeEditar(id_usuario:any){
+    if(localStorage.getItem('id') == id_usuario || localStorage.getItem('ROLE') == 'ROLE_ADMIN') {
+
+      console.log("el local id", localStorage.getItem('id'), "el id usuario es", id_usuario );
+     return true;
+   } else {
+      return false;
+     }
+  }
+
   submit(id_sitio:any) {
+    
     this.servicioHoteles.updateAlojamientos(this.formularioUpdate.value, id_sitio).subscribe(
       res => {
         if (res) {
@@ -66,7 +80,7 @@ export class VistaAlojamientoComponent implements OnInit {
           this.router.navigate(['/alojamientos']);
         }
         console.log(res);
-      },
+  }, 
       err => {
         console.log(err);
       }

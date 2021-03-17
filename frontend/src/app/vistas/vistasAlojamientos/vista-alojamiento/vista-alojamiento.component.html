@@ -3,7 +3,10 @@
 
         <h2>{{ alojamiento.nombre}}</h2>
         <h6 class="">{{ alojamiento.descripcion}}</h6><br>
-        <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
+        <div id=puedeEditar *ngIf="puedeEditar(alojamiento.id_usuario) == true">
+            <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
+        </div>
+
 
     </div>
     <div id="{{alojamiento.id_sitio}}" class="formularioOculto alojamiento">
