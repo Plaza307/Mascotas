@@ -35,16 +35,7 @@ export class VistaAlojamientoComponent implements OnInit {
   ngOnInit() {
     this.listarCiudades();
     this.listarTipoSitios();
-    if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_ADMIN'){
-     alert('El usuario puede editar todos los sitios')
-    }else if(localStorage.getItem('token') && localStorage.getItem('ROLE') == 'ROLE_USER'  ) {
-      alert('El usuario tiene token pero solo puede editar los sitios que él ha creado')
-    } else {
-      alert('No tiene token')
-
-     
-
-    }
+    
 
     this.servicioHoteles.getAlojamientos().subscribe(
       res => {
@@ -67,8 +58,7 @@ export class VistaAlojamientoComponent implements OnInit {
      }
   }
 
-  submit(id_sitio:any) {
-    
+  submit(id_sitio:any) {   
     this.servicioHoteles.updateAlojamientos(this.formularioUpdate.value, id_sitio).subscribe(
       res => {
         if (res) {
@@ -121,14 +111,6 @@ export class VistaAlojamientoComponent implements OnInit {
           }
         );
       }
-
-  ngMostrarBoton(){
-    $("#botonEditar").removeClass("btnEditar")
-  }
-
-  ngOcultarBoton(){
-    $("#botonEditar").addClass("btnEditar");
-  }
 
   ngOcultarFormulario(id_sitio:any){
     $("#"+id_sitio).removeClass("formularioOculto");

@@ -25,7 +25,10 @@
     max-width: 420px;
 }
 
-.title {
-    grid-area: cabecera;
-    font: bold 90% monospace;
+.formularioOculto {
+    display: none;
+}
+
+.formularioMostrar {
+    display: block;
 }

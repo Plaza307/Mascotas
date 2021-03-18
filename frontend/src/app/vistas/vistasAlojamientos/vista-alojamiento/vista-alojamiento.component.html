@@ -2,14 +2,14 @@
     <div class="alojamiento formularioMostrar" id="vista{{alojamiento.id_sitio}}">
 
         <h2>{{ alojamiento.nombre}}</h2>
-        <h6 class="">{{ alojamiento.descripcion}}</h6><br>
+        <h6>{{ alojamiento.descripcion}}</h6><br>
         <div id=puedeEditar *ngIf="puedeEditar(alojamiento.id_usuario) == true">
             <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
             <div class="btn btn-primary" (click)="ngBorrarSitio(alojamiento.id_sitio)">Borrar</div>
         </div>
-
-
     </div>
+
+
     <div id="{{alojamiento.id_sitio}}" class="formularioOculto alojamiento">
         <form [formGroup]="formularioUpdate" (submit)="submit(alojamiento.id_sitio)">
             <label> Nombre del alojamiento: </label> <input type="text" formControlName="nombre" value="{{alojamiento.nombre}}"><br>

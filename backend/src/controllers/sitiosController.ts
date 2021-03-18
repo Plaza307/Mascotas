@@ -146,13 +146,12 @@ public async buscador(req: Request, res: Response) {
     console.log(req.body);
     const listado = await pool.query('SELECT * FROM sitios WHERE id_tipo=? AND id_ciudad=?', [req.body.id_tipo, req.body.id_ciudad]);
     
-    console.log("controlador",listado);
+    console.log("controlador", listado);
     res.send(listado);
 }
 
 public async getBuscador(req: Request, res: Response) {
     console.log("esto",req.body);
-    console.log(req.body.id_tipo);
     console.log("aqui", req.body[0]);
     const listado = await pool.query('SELECT nombre, descripcion, precio, telefono, web FROM sitios WHERE id_tipo=? AND id_ciudad=?', [req.body[0], req.body[1]]);
     
