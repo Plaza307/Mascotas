@@ -1,10 +1,50 @@
-<div class="contenedor_restaurantes">
-    <div class="title">
-        <h1>Restaurantes</h1>
-    </div>
-    <div class="restaurantes" *ngFor="let restaurante of listaRestaurantes">
+<div class="contenedor_restaurantes" *ngFor="let restaurante of listaRestaurantes">
+
+    <div class="restaurantes">
 
         <h2>{{ restaurante.nombre}}</h2>
         <h2>{{ restaurante.descripcion}}</h2><br>
+        <h2>{{ restaurante.telefono}}</h2><br>
+        <h2>{{ restaurante.web}}</h2><br>
+        <div id=puedeEditar *ngIf="puedeEditar(restaurante.id_usuario) == true">
+            <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(restaurante.id_sitio) || ngMostrarFormulario(restaurante.id_sitio)">Editar</div>
+            <div class="btn btn-primary" (click)="ngBorrarSitio(restaurante.id_sitio)">Borrar</div>
+        </div>
+    </div>
+
+    <div id="{{restaurante.id_sitio}}" class="formularioOculto restaurantes">
+        <form [formGroup]="formularioUpdate" (submit)="submit(restaurante.id_sitio)">
+            <label> Nombre del restaurante: </label> <input type="text" formControlName="nombre" value="{{restaurante.nombre}}"><br>
+
+            <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{restaurante.descripcion}}"><br>
+
+
+            <label>Precio: </label> <input type="number" formControlName="precio" value="{{restaurante.precio}}"><br>
+
+
+            <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{restaurante.capacidad}}"><br>
+
+
+            <label> Telefono: </label><input type="number" formControlName="telefono" value="{{restaurante.telefono}}"><br>
+
+
+            <label>Web: </label> <input type="text" formControlName="web" value="{{restaurante.web}}"><br>
+
+            <label>Ciudad: </label>
+            <label>
+                    <select formControlName="id_ciudad" value="{{restaurante.id_ciudad}}">{{restaurante.provincia}}
+                    <option  *ngFor="let ciudades of listaCiudades " value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
+                    </select>
+                </label><br>
+            <label>Tipo sitios: </label>
+            <label>
+                    <select formControlName="id_tipo" value="{{restaurante.id_tipo}}">{{restaurante.nombre}}
+                    <option  *ngFor="let tipoSitio of listaTipoSitios" value="{{tipoSitio.id_tipositio}}">{{tipoSitio.nombre}}</option>
+                    </select>
+                </label>
+
+            <br><button type="submit" class="boton ">Guardar cambios</button>
+
+        </form>
     </div>
 </div>

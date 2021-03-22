@@ -52,28 +52,24 @@ class SitiosController {
     verAlojamientos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=1 OR id_tipo=4 OR id_tipo=5');
-            console.log(listado);
             res.send(listado);
         });
     }
     verApartamentos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=4');
-            console.log(listado);
             res.send(listado);
         });
     }
     verCampings(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=5');
-            console.log(listado);
             res.send(listado);
         });
     }
     verHoteles(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=1');
-            console.log(listado);
             res.send(listado);
         });
     }
@@ -91,14 +87,12 @@ class SitiosController {
     listarCiudades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT id_ciudad, provincia FROM ciudades');
-            console.log(listado);
             res.send(listado);
         });
     }
     getTipoSitio(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT id_tipositio, nombre FROM tipositios WHERE id_tipositio = 5 OR id_tipositio = 1 OR id_tipositio = 4');
-            console.log(listado);
             res.send(listado);
         });
     }
@@ -106,28 +100,24 @@ class SitiosController {
     verComercios(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=6 OR id_tipo=7 OR id_tipo=8');
-            console.log(listado);
             res.send(listado);
         });
     }
     verRestaurantes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=6');
-            console.log(listado);
             res.send(listado);
         });
     }
     verTiendas(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=7');
-            console.log(listado);
             res.send(listado);
         });
     }
     verVeterinarios(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=8');
-            console.log(listado);
             res.send(listado);
         });
     }
@@ -145,14 +135,12 @@ class SitiosController {
     getTipoComercio(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT id_tipositio, nombre FROM tipositios WHERE id_tipositio=6 OR id_tipositio=7 OR id_tipositio=8');
-            console.log(listado);
             res.send(listado);
         });
     }
     getTipoAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const listado = yield database_1.default.query('SELECT id_tipositio, nombre FROM tipositios WHERE id_tipositio=6 OR id_tipositio=7 OR id_tipositio=8 OR id_tipositio=1 OR id_tipositio=4 OR id_tipositio=5 ');
-            console.log(listado);
             res.send(listado);
         });
     }
@@ -160,14 +148,11 @@ class SitiosController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             const listado = yield database_1.default.query('SELECT * FROM sitios WHERE id_tipo=? AND id_ciudad=?', [req.body.id_tipo, req.body.id_ciudad]);
-            console.log("controlador", listado);
             res.send(listado);
         });
     }
     getBuscador(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("esto", req.body);
-            console.log("aqui", req.body[0]);
             const listado = yield database_1.default.query('SELECT nombre, descripcion, precio, telefono, web FROM sitios WHERE id_tipo=? AND id_ciudad=?', [req.body[0], req.body[1]]);
             console.log(listado);
             res.send(listado);
