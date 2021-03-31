@@ -1,50 +1,52 @@
-<div class="contenedor_comercios" *ngFor="let comercio of listaComercios">
+<div class="grid">
+    <div class="contenedor_comercios" *ngFor="let comercio of listaComercios">
 
-    <div class="comercios">
+        <div class="comercios">
 
-        <h2>{{ comercio.nombre}}</h2>
-        <h2>{{ comercio.descripcion}}</h2><br>
-        <h2>{{ comercio.telefono}}</h2><br>
-        <h2>{{ comercio.web}}</h2><br>
-        <div id=puedeEditar *ngIf="puedeEditar(comercio.id_usuario) == true">
-            <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(comercio.id_sitio) || ngMostrarFormulario(comercio.id_sitio)">Editar</div>
-            <div class="btn btn-primary" (click)="ngBorrarSitio(comercio.id_sitio)">Borrar</div>
+            <h2>{{ comercio.nombre}}</h2>
+            <h2>{{ comercio.descripcion}}</h2><br>
+            <h2>{{ comercio.telefono}}</h2><br>
+            <h2>{{ comercio.web}}</h2><br>
+            <div id=puedeEditar *ngIf="puedeEditar(comercio.id_usuario) == true">
+                <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(comercio.id_sitio) || ngMostrarFormulario(comercio.id_sitio)">Editar</div>
+                <div class="btn btn-primary" (click)="ngBorrarSitio(comercio.id_sitio)">Borrar</div>
+            </div>
         </div>
-    </div>
 
-    <div id="{{comercio.id_sitio}}" class="formularioOculto comercio">
-        <form [formGroup]="formularioUpdate" (submit)="submit(comercio.id_sitio)">
-            <label> Nombre del comercio: </label> <input type="text" formControlName="nombre" value="{{comercio.nombre}}"><br>
+        <div id="{{comercio.id_sitio}}" class="formularioOculto comercio">
+            <form [formGroup]="formularioUpdate" (submit)="submit(comercio.id_sitio)">
+                <label> Nombre del comercio: </label> <input type="text" formControlName="nombre" value="{{comercio.nombre}}"><br>
 
-            <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{comercio.descripcion}}"><br>
-
-
-            <label>Precio: </label> <input type="number" formControlName="precio" value="{{comercio.precio}}"><br>
+                <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{comercio.descripcion}}"><br>
 
 
-            <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{comercio.capacidad}}"><br>
+                <label>Precio: </label> <input type="number" formControlName="precio" value="{{comercio.precio}}"><br>
 
 
-            <label> Telefono: </label><input type="number" formControlName="telefono" value="{{comercio.telefono}}"><br>
+                <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{comercio.capacidad}}"><br>
 
 
-            <label>Web: </label> <input type="text" formControlName="web" value="{{comercio.web}}"><br>
+                <label> Telefono: </label><input type="number" formControlName="telefono" value="{{comercio.telefono}}"><br>
 
-            <label>Ciudad: </label>
-            <label>
+
+                <label>Web: </label> <input type="text" formControlName="web" value="{{comercio.web}}"><br>
+
+                <label>Ciudad: </label>
+                <label>
                     <select formControlName="id_ciudad" value="{{comercio.id_ciudad}}">{{comercio.provincia}}
                     <option  *ngFor="let ciudades of listaCiudades " value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>
-            <label>Tipo sitios: </label>
-            <label>
+                <label>Tipo sitios: </label>
+                <label>
                     <select formControlName="id_tipo" value="{{comercio.id_tipo}}">{{comercio.nombre}}
                     <option  *ngFor="let tipoSitio of listaTipoSitios" value="{{tipoSitio.id_tipositio}}">{{tipoSitio.nombre}}</option>
                     </select>
                 </label>
 
-            <br><button type="submit" class="boton ">Guardar cambios</button>
+                <br><button type="submit" class="boton ">Guardar cambios</button>
 
-        </form>
+            </form>
+        </div>
     </div>
 </div>

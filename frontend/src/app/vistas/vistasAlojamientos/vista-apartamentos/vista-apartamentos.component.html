@@ -1,53 +1,55 @@
-<div class="contenedor_apartamentos" *ngFor="let apartamentos of listaApartamentos">
+<div class="grid">
+    <div class="contenedor_apartamentos" *ngFor="let apartamentos of listaApartamentos">
 
-    <div class="apartamento formularioMostrar" id="vista{{apartamentos.id_sitio}}">
+        <div class="apartamento formularioMostrar" id="vista{{apartamentos.id_sitio}}">
 
-        <h2>{{ apartamentos.nombre}}</h2>
-        <h6>{{ apartamentos.descripcion}}</h6><br>
-        <h6>{{ apartamentos.precio}}€</h6><br>
-        <h6>{{ apartamentos.telefono}}</h6><br>
-        <h6>{{ apartamentos.web}}</h6><br>
-        <div id=puedeEditar *ngIf="puedeEditar(apartamentos.id_usuario) == true">
-            <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(apartamentos.id_sitio) || ngMostrarFormulario(apartamentos.id_sitio)">Editar</div>
-            <div class="btn btn-primary" (click)="ngBorrarSitio(apartamentos.id_sitio)">Borrar</div>
+            <h2>{{ apartamentos.nombre}}</h2>
+            <h6>{{ apartamentos.descripcion}}</h6><br>
+            <h6>{{ apartamentos.precio}}€</h6><br>
+            <h6>{{ apartamentos.telefono}}</h6><br>
+            <h6>{{ apartamentos.web}}</h6><br>
+            <div id=puedeEditar *ngIf="puedeEditar(apartamentos.id_usuario) == true">
+                <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(apartamentos.id_sitio) || ngMostrarFormulario(apartamentos.id_sitio)">Editar</div>
+                <div class="btn btn-primary" (click)="ngBorrarSitio(apartamentos.id_sitio)">Borrar</div>
+            </div>
         </div>
-    </div>
 
 
-    <div id="{{apartamentos.id_sitio}}" class="formularioOculto apartamento">
-        <form [formGroup]="formularioUpdate" (submit)="submit(apartamentos.id_sitio)">
-            <label> Nombre del apartamento: </label> <input type="text" formControlName="nombre" value="{{apartamentos.nombre}}"><br>
+        <div id="{{apartamentos.id_sitio}}" class="formularioOculto apartamento">
+            <form [formGroup]="formularioUpdate" (submit)="submit(apartamentos.id_sitio)">
+                <label> Nombre del apartamento: </label> <input type="text" formControlName="nombre" value="{{apartamentos.nombre}}"><br>
 
-            <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{apartamentos.descripcion}}"><br>
-
-
-            <label>Precio: </label> <input type="number" formControlName="precio" value="{{apartamentos.precio}}"><br>
+                <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{apartamentos.descripcion}}"><br>
 
 
-            <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{apartamentos.capacidad}}"><br>
+                <label>Precio: </label> <input type="number" formControlName="precio" value="{{apartamentos.precio}}"><br>
 
 
-            <label> Telefono: </label><input type="number" formControlName="telefono" value="{{apartamentos.telefono}}"><br>
+                <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{apartamentos.capacidad}}"><br>
 
 
-            <label>Web: </label> <input type="text" formControlName="web" value="{{apartamentos.web}}"><br>
+                <label> Telefono: </label><input type="number" formControlName="telefono" value="{{apartamentos.telefono}}"><br>
 
-            <label>Ciudad: </label>
-            <label>
+
+                <label>Web: </label> <input type="text" formControlName="web" value="{{apartamentos.web}}"><br>
+
+                <label>Ciudad: </label>
+                <label>
                     <select formControlName="id_ciudad" value="{{apartamentos.id_ciudad}}">{{apartamentos.provincia}}
                     <option  *ngFor="let ciudades of listaCiudades " value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>
-            <label>Tipo sitios: </label>
-            <label>
+                <label>Tipo sitios: </label>
+                <label>
                     <select formControlName="id_tipo" value="{{apartamentos.id_tipo}}">{{apartamentos.nombre}}
                     <option  *ngFor="let tipoSitio of listaTipoSitios" value="{{tipoSitio.id_tipositio}}">{{tipoSitio.nombre}}</option>
                     </select>
                 </label>
 
-            <br><button type="submit" class="boton ">Guardar cambios</button>
+                <br><button type="submit" class="boton ">Guardar cambios</button>
 
-        </form>
+            </form>
+        </div>
+
     </div>
-
 </div>

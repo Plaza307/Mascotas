@@ -1,50 +1,52 @@
-<div class="contenedor_tiendas" *ngFor="let tienda of listaTiendas">
+<div class="grid">
+    <div class="contenedor_tiendas" *ngFor="let tienda of listaTiendas">
 
-    <div class="tiendas">
+        <div class="tiendas">
 
-        <h2>{{ tienda.nombre}}</h2>
-        <h2>{{ tienda.descripcion}}</h2><br>
-        <h2>{{ tienda.telefono}}</h2><br>
-        <h2>{{ tienda.web}}</h2><br>
-        <div id=puedeEditar *ngIf="puedeEditar(tienda.id_usuario) == true">
-            <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(tienda.id_sitio) || ngMostrarFormulario(tienda.id_sitio)">Editar</div>
-            <div class="btn btn-primary" (click)="ngBorrarSitio(tienda.id_sitio)">Borrar</div>
+            <h2>{{ tienda.nombre}}</h2>
+            <h2>{{ tienda.descripcion}}</h2><br>
+            <h2>{{ tienda.telefono}}</h2><br>
+            <h2>{{ tienda.web}}</h2><br>
+            <div id=puedeEditar *ngIf="puedeEditar(tienda.id_usuario) == true">
+                <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(tienda.id_sitio) || ngMostrarFormulario(tienda.id_sitio)">Editar</div>
+                <div class="btn btn-primary" (click)="ngBorrarSitio(tienda.id_sitio)">Borrar</div>
+            </div>
         </div>
-    </div>
 
-    <div id="{{tienda.id_sitio}}" class="formularioOculto tiendas">
-        <form [formGroup]="formularioUpdate" (submit)="submit(tienda.id_sitio)">
-            <label> Nombre del tienda: </label> <input type="text" formControlName="nombre" value="{{tienda.nombre}}"><br>
+        <div id="{{tienda.id_sitio}}" class="formularioOculto tiendas">
+            <form [formGroup]="formularioUpdate" (submit)="submit(tienda.id_sitio)">
+                <label> Nombre del tienda: </label> <input type="text" formControlName="nombre" value="{{tienda.nombre}}"><br>
 
-            <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{tienda.descripcion}}"><br>
-
-
-            <label>Precio: </label> <input type="number" formControlName="precio" value="{{tienda.precio}}"><br>
+                <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{tienda.descripcion}}"><br>
 
 
-            <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{tienda.capacidad}}"><br>
+                <label>Precio: </label> <input type="number" formControlName="precio" value="{{tienda.precio}}"><br>
 
 
-            <label> Telefono: </label><input type="number" formControlName="telefono" value="{{tienda.telefono}}"><br>
+                <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{tienda.capacidad}}"><br>
 
 
-            <label>Web: </label> <input type="text" formControlName="web" value="{{tienda.web}}"><br>
+                <label> Telefono: </label><input type="number" formControlName="telefono" value="{{tienda.telefono}}"><br>
 
-            <label>Ciudad: </label>
-            <label>
+
+                <label>Web: </label> <input type="text" formControlName="web" value="{{tienda.web}}"><br>
+
+                <label>Ciudad: </label>
+                <label>
                     <select formControlName="id_ciudad" value="{{tienda.id_ciudad}}">{{tienda.provincia}}
                     <option  *ngFor="let ciudades of listaCiudades " value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>
-            <label>Tipo sitios: </label>
-            <label>
+                <label>Tipo sitios: </label>
+                <label>
                     <select formControlName="id_tipo" value="{{tienda.id_tipo}}">{{tienda.nombre}}
                     <option  *ngFor="let tipoSitio of listaTipoSitios" value="{{tipoSitio.id_tipositio}}">{{tipoSitio.nombre}}</option>
                     </select>
                 </label>
 
-            <br><button type="submit" class="boton ">Guardar cambios</button>
+                <br><button type="submit" class="boton ">Guardar cambios</button>
 
-        </form>
+            </form>
+        </div>
     </div>
 </div>
