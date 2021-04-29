@@ -5,8 +5,10 @@
             <h2>{{ alojamiento.nombre}}</h2>
             <h6>{{ alojamiento.descripcion}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(alojamiento.id_usuario) == true">
-                <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
-                <div class="btn btn-primary" (click)="ngBorrarSitio(alojamiento.id_sitio)">Borrar</div>
+                <div class="botones">
+                    <div id="botonEditar" class=" btn btn-warning" (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
+                    <div class="btn btn-warning" (click)="ngBorrarSitio(alojamiento.id_sitio)">Borrar</div>
+                </div>
             </div>
         </div>
 
@@ -32,7 +34,7 @@
                 <label>Ciudad: </label>
                 <label>
                     <select formControlName="id_ciudad" value="{{alojamiento.id_ciudad}}">{{alojamiento.provincia}}
-                    <option  *ngFor="let ciudades of listaCiudades " value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
+                    <option  *ngFor="let ciudades of listaCiudades" value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>
                 <label>Tipo sitios: </label>
@@ -42,7 +44,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="boton ">Guardar cambios</button>
+                <br><button type="submit" class="btn-warning ">Guardar cambios</button>
 
             </form>
         </div>

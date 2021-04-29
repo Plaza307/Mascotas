@@ -1,16 +1,16 @@
 <div class="grid">
     <div class="contenedor_hoteles" *ngFor="let hoteles of listaHoteles">
 
-        <div class="hotel">
+        <div class="hotel formularioMostrar" id="vista{{hoteles.id_sitio}}">
 
             <h2>{{ hoteles.nombre}}</h2>
-            <h2>{{ hoteles.descripcion}}</h2><br>
-            <h2>{{ hoteles.precio}} €/Noche</h2><br>
-            <h2>{{ hoteles.telefono}}</h2><br>
-            <h2>{{ hoteles.web}}</h2><br>
+            <h6>{{ hoteles.descripcion}}</h6><br>
+            <h6>{{ hoteles.precio}} €/Noche</h6><br>
+            <h6>{{ hoteles.telefono}}</h6><br>
+            <h6>{{ hoteles.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(hoteles.id_usuario) == true">
-                <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(hoteles.id_sitio) || ngMostrarFormulario(hoteles.id_sitio)">Editar</div>
-                <div class="btn btn-primary" (click)="ngBorrarSitio(hoteles.id_sitio)">Borrar</div>
+                <div id="botonEditar" class=" btn btn-warning" (click)="ngOcultarFormulario(hoteles.id_sitio) || ngMostrarFormulario(hoteles.id_sitio)">Editar</div>
+                <div class="btn btn-warning" (click)="ngBorrarSitio(hoteles.id_sitio)">Borrar</div>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="boton ">Guardar cambios</button>
+                <br><button type="submit" class="btn-warning ">Guardar cambios</button>
 
             </form>
         </div>

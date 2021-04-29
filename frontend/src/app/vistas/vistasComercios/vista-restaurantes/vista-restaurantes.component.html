@@ -1,15 +1,15 @@
 <div class="grid">
     <div class="contenedor_restaurantes" *ngFor="let restaurante of listaRestaurantes">
 
-        <div class="restaurantes">
+        <div class="restaurantes formularioMostrar" id="vista{{restaurante.id_sitio}}">
 
             <h2>{{ restaurante.nombre}}</h2>
-            <h2>{{ restaurante.descripcion}}</h2><br>
-            <h2>{{ restaurante.telefono}}</h2><br>
-            <h2>{{ restaurante.web}}</h2><br>
+            <h6>{{ restaurante.descripcion}}</h6><br>
+            <h6>{{ restaurante.telefono}}</h6><br>
+            <h6>{{ restaurante.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(restaurante.id_usuario) == true">
-                <div id="botonEditar" class=" btn btn-primary" (click)="ngOcultarFormulario(restaurante.id_sitio) || ngMostrarFormulario(restaurante.id_sitio)">Editar</div>
-                <div class="btn btn-primary" (click)="ngBorrarSitio(restaurante.id_sitio)">Borrar</div>
+                <div id="botonEditar" class=" btn btn-warning" (click)="ngOcultarFormulario(restaurante.id_sitio) || ngMostrarFormulario(restaurante.id_sitio)">Editar</div>
+                <div class="btn btn-warning" (click)="ngBorrarSitio(restaurante.id_sitio)">Borrar</div>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="boton ">Guardar cambios</button>
+                <br><button type="submit" class="btn-warning">Guardar cambios</button>
 
             </form>
         </div>

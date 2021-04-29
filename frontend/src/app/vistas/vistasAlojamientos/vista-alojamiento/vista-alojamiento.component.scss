@@ -22,6 +22,7 @@
     grid-area: cuerpo;
     margin: 10px;
     font-size: 17px;
+    min-width: 400px;
     max-width: 420px;
 }
 
@@ -33,8 +34,19 @@
     display: block;
 }
 
+label {
+    display: inline-block;
+    width: 150px;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
 }

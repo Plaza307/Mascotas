@@ -7,8 +7,10 @@
             <h2>{{ user.email}}</h2><br>
             <h2>{{ user.telefono}}</h2><br>
             <h2>{{ user.f_nac}}</h2><br>
-            <div class="btn btn-primary" (click)="ngOcultarFormulario(user.id_usuario) || ngMostrarFormulario(user.id_usuario)">Editar</div>
-            <div class="btn btn-primary" (click)="ngBorrarUsuario(user.id_usuario)">Borrar</div>
+            <div class="botones">
+                <div class="btn btn-warning" (click)="ngOcultarFormulario(user.id_usuario) || ngMostrarFormulario(user.id_usuario)">Editar</div>
+                <div class="btn btn-warning" (click)="ngBorrarUsuario(user.id_usuario)">Borrar</div>
+            </div>
         </div>
 
 
@@ -29,7 +31,7 @@
 
 
 
-                <br><button type="submit" class="btb btn-primary">Guardar cambios</button>
+                <br><button type="submit" class="btn btn-warning">Guardar cambios</button>
 
             </form>
         </div>

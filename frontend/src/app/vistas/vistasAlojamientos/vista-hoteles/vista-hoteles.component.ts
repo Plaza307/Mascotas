@@ -34,6 +34,8 @@ export class VistaHotelesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listarCiudades();
+    this.listarTipoSitios();
 
     this.servicioHoteles.getHoteles().subscribe(
       res => {

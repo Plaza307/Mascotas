@@ -22,6 +22,7 @@
     grid-area: cuerpo;
     margin: 10px;
     font-size: 17px;
+    min-width: 420px;
     max-width: 420px;
 }
 
@@ -31,6 +32,11 @@
 
 .formularioMostrar {
     display: block;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
 }
 
 .grid {

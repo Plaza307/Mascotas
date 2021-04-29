@@ -36,6 +36,8 @@ export class VistaCampingsComponent implements OnInit {
 
   ngOnInit() {
     this.mostrarCampings();
+    this.listarCiudades();
+    this.listarTipoSitios();
   }
 
   mostrarCampings() {
