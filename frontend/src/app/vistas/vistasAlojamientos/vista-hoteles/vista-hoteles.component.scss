@@ -40,6 +40,22 @@
     grid-gap: 10px;
 }
 
+.btn {
+    margin: 4px;
+    background-color: #9E5B01;
+    color: #ffffff;
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: black 8px;
+}
+
+.btn:hover {
+    background-color: #5F3700;
+}
+
 label {
     display: inline-block;
     width: 150px;

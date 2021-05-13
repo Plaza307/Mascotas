@@ -6,8 +6,8 @@
             <h6>{{ alojamiento.descripcion}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(alojamiento.id_usuario) == true">
                 <div class="botones">
-                    <div id="botonEditar" class=" btn btn-warning" (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
-                    <div class="btn btn-warning" (click)="ngBorrarSitio(alojamiento.id_sitio)">Borrar</div>
+                    <div id="botonEditar" class=" btn " (click)="ngOcultarFormulario(alojamiento.id_sitio) || ngMostrarFormulario(alojamiento.id_sitio)">Editar</div>
+                    <div class="btn " (click)="ngBorrarSitio(alojamiento.id_sitio)">Borrar</div>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="btn-warning ">Guardar cambios</button>
+                <br><button type="submit" class="btn">Guardar cambios</button>
 
             </form>
         </div>

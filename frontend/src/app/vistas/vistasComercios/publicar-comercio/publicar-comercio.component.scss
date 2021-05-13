@@ -37,23 +37,12 @@ label {
     width: 150px;
 }
 
-.boton {
+.btn {
+    margin: 4px;
     background-color: #9E5B01;
-    border-radius: 8px;
-    display: inline-block;
-    cursor: pointer;
     color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    text-decoration: none;
 }
 
-.boton:hover {
+.btn:hover {
     background-color: #5F3700;
-}
-
-.boton:active {
-    position: relative;
-    top: 1px;
 }

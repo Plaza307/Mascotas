@@ -9,8 +9,10 @@
             <h6>{{ campings.telefono}}</h6><br>
             <h6>{{ campings.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(campings.id_usuario) == true">
-                <div id="botonEditar" class=" btn btn-warning" (click)="ngOcultarFormulario(campings.id_sitio) || ngMostrarFormulario(campings.id_sitio)">Editar</div>
-                <div class="btn btn-warning" (click)="ngBorrarSitio(campings.id_sitio)">Borrar</div>
+                <div class="botones">
+                    <div id="botonEditar" class=" btn" (click)="ngOcultarFormulario(campings.id_sitio) || ngMostrarFormulario(campings.id_sitio)">Editar</div>
+                    <div class="btn" (click)="ngBorrarSitio(campings.id_sitio)">Borrar</div>
+                </div>
             </div>
         </div>
 
@@ -45,7 +47,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="btn-warning ">Guardar cambios</button>
+                <br><button type="submit" class="btn ">Guardar cambios</button>
 
             </form>
         </div>

@@ -5,11 +5,11 @@
 
             <h2>{{ comercio.nombre}}</h2>
             <h6>{{ comercio.descripcion}}</h6><br>
-            <h6>{{ comercio.telefono}}</h6><br>
-            <h6>{{ comercio.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(comercio.id_usuario) == true">
-                <div id="botonEditar" class=" btn btn-warning" (click)="ngOcultarFormulario(comercio.id_sitio) || ngMostrarFormulario(comercio.id_sitio)">Editar</div>
-                <div class="btn btn-warning" (click)="ngBorrarSitio(comercio.id_sitio)">Borrar</div>
+                <div class="botones">
+                    <div id="botonEditar" class=" btn" (click)="ngOcultarFormulario(comercio.id_sitio) || ngMostrarFormulario(comercio.id_sitio)">Editar</div>
+                    <div class="btn" (click)="ngBorrarSitio(comercio.id_sitio)">Borrar</div>
+                </div>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="btn-warning">Guardar cambios</button>
+                <br><button type="submit" class="btn">Guardar cambios</button>
 
             </form>
         </div>

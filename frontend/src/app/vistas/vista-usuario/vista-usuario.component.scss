@@ -38,6 +38,12 @@
     display: block;
 }
 
+.btn {
+    margin: 4px;
+    background-color: #9E5B01;
+    color: #ffffff;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -48,4 +54,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 5px;
+}
+
+.btn:hover {
+    background-color: #5F3700;
 }

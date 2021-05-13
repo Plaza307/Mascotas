@@ -8,8 +8,10 @@
             <h6>{{ restaurante.telefono}}</h6><br>
             <h6>{{ restaurante.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(restaurante.id_usuario) == true">
-                <div id="botonEditar" class=" btn btn-warning" (click)="ngOcultarFormulario(restaurante.id_sitio) || ngMostrarFormulario(restaurante.id_sitio)">Editar</div>
-                <div class="btn btn-warning" (click)="ngBorrarSitio(restaurante.id_sitio)">Borrar</div>
+                <div class="botones">
+                    <div id="botonEditar" class=" btn" (click)="ngOcultarFormulario(restaurante.id_sitio) || ngMostrarFormulario(restaurante.id_sitio)">Editar</div>
+                    <div class="btn" (click)="ngBorrarSitio(restaurante.id_sitio)">Borrar</div>
+                </div>
             </div>
         </div>
 
@@ -44,7 +46,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="btn-warning">Guardar cambios</button>
+                <br><button type="submit" class="btn">Guardar cambios</button>
 
             </form>
         </div>

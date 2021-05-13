@@ -44,9 +44,9 @@
 
 
 
-                <label>Foto:</label> <input type="file" formControlName="foto">
+                <!--<label>Foto:</label> <input type="file" formControlName="foto">
                 <div *ngIf="foto.invalid && (foto.dirty || foto.touched)">
-                </div><br>
+                </div><br>-->
                 <!---------------- Select de los paises------------------->
                 <label>Ciudad: </label>
                 <label>
@@ -61,7 +61,7 @@
                     </select>
                 </label>
 
-                <br><button type="submit" class="btn-warning" [disabled]="!formularioRegistroAlojamientos.valid">Enviar</button>
+                <br><button type="submit" class="btn" [disabled]="!formularioRegistroAlojamientos.valid">Enviar</button>
 
             </form>
         </div>
