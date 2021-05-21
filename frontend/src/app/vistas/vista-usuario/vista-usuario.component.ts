@@ -13,6 +13,7 @@ declare var $: any;
 export class VistaUsuarioComponent implements OnInit {
 
   private formularioUpdate: FormGroup;
+  private formularioPassword: FormGroup;
   private listaUsuarios: any;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private servicioUsuarios: UsuariosService) { 
@@ -23,6 +24,10 @@ export class VistaUsuarioComponent implements OnInit {
       telefono: ['', [Validators.required]],
       f_nac: ['']
 
+    });
+
+    this.formularioPassword = formBuilder.group({
+      password: ['', [Validators.required]]
     });
   }
 
@@ -71,16 +76,49 @@ export class VistaUsuarioComponent implements OnInit {
     );
   }}
 
+  ngRestartPassword(id_usuario:any){
+    this.servicioUsuarios.updatePassword(this.formularioPassword.value, id_usuario).subscribe(
+      res => {
+        console.log("respuesta del component", res);
+        if (res) {
+          alert('Contraseña actualizada correctamente');
+          this.router.navigate(['/vistaAdmin']);
+          this.ngOnInit();
+        } else {
+          alert('No se ha podido actualizar la contraseña');
+          this.router.navigate(['/vistaAdmin']);
+        }
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+      }
+
   ngOcultarFormulario(id_usuario:any){
     console.log(id_usuario);
     
     $("#"+id_usuario).removeClass("formularioOculto");
     $("#vista"+id_usuario).removeClass("formularioMostrar");
+    $("#password"+id_usuario).removeClass("formularioMostrar");
   }
 
   ngMostrarFormulario(id_usuario:any){
     $("#"+id_usuario).addClass("formularioMostrar");
     $("#vista"+id_usuario).addClass("formularioOculto");
+    $("#password"+id_usuario).addClass("formularioOculto");
+  }
+
+  ngOcultarFormulario1(id_usuario:any){
+    $("#vista"+id_usuario).removeClass("formularioMostrar");
+    $("#password"+id_usuario).removeClass("formularioOculto");
+  }
+
+  ngMostrarFormulario1(id_usuario:any){
+    
+    $("#vista"+id_usuario).addClass("formularioOculto");
+    $("#password"+id_usuario).addClass("formularioMostrar");
   }
   
   
