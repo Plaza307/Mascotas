@@ -9,7 +9,7 @@
             <h6>{{ restaurante.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(restaurante.id_usuario) == true">
                 <div class="botones">
-                    <div id="botonEditar" class=" btn" (click)="ngOcultarFormulario(restaurante.id_sitio) || ngMostrarFormulario(restaurante.id_sitio)">Editar</div>
+                    <div id="botonEditar" class=" btn" (click)="ngOcultarFormulario(restaurante.id_sitio) || ngMostrarFormulario(restaurante.id_sitio); formularioUpdate.patchValue(restaurante)">Editar</div>
                     <div class="btn" (click)="ngBorrarSitio(restaurante.id_sitio)">Borrar</div>
                 </div>
             </div>
@@ -17,25 +17,25 @@
 
         <div id="{{restaurante.id_sitio}}" class="formularioOculto restaurantes">
             <form [formGroup]="formularioUpdate" (submit)="submit(restaurante.id_sitio)">
-                <label> Nombre del restaurante: </label> <input type="text" formControlName="nombre" value="{{restaurante.nombre}}"><br>
+                <label> Nombre del restaurante: </label> <input type="text" formControlName="nombre"><br>
 
-                <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{restaurante.descripcion}}"><br>
-
-
-                <label>Precio: </label> <input type="number" formControlName="precio" value="{{restaurante.precio}}"><br>
+                <label>Descripcion: </label><input type="textarea" formControlName="descripcion"><br>
 
 
-                <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{restaurante.capacidad}}"><br>
+                <label>Precio: </label> <input type="number" formControlName="precio"><br>
 
 
-                <label> Telefono: </label><input type="number" formControlName="telefono" value="{{restaurante.telefono}}"><br>
+                <label> Capacidad: </label><input type="number" formControlName="capacidad"><br>
 
 
-                <label>Web: </label> <input type="text" formControlName="web" value="{{restaurante.web}}"><br>
+                <label> Telefono: </label><input type="number" formControlName="telefono"><br>
+
+
+                <label>Web: </label> <input type="text" formControlName="web"><br>
 
                 <label>Ciudad: </label>
                 <label>
-                    <select formControlName="id_ciudad" value="{{restaurante.id_ciudad}}">{{restaurante.provincia}}
+                    <select formControlName="id_ciudad">
                     <option  *ngFor="let ciudades of listaCiudades " value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>

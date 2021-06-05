@@ -1,6 +1,6 @@
 <!----------------------------------- parte del logo ------------------------------------->
 <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
-    <a class="navbar-brand" href="/inicio"><img src="../../../assets/img/logoEnd1.png"></a>
+    <a class="navbar-brand" routerLink="/inicio" routerLinkActive="active-link"><img src="../../../assets/img/logoEnd1.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon">
                 
@@ -9,14 +9,14 @@
     <!------------------------------- Div de Hoteles ------------------------------------>
     <div class="collapse navbar-collapse" id="navbar">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-warning"><a href="/alojamientos">Alojamientos</a></button>
+            <button type="button" class="btn btn-warning"><a routerLink="/alojamientos" routerLinkActive="active-link">Alojamientos</a></button>
             <div class="btn-group " role="group">
                 <button id="hotelesNav" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu hidden" aria-labelledby="hotelesNav" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                    <a class="dropdown-item" id="apartamento" href="/apartamentos">Apartamentos</a>
-                    <a class="dropdown-item" id="campings" href="/campings">Campings</a>
-                    <a class="dropdown-item" id="hoteles" href="/hoteles">Hoteles</a>
-                    <a class="dropdown-item" id="newPost" href="/publicar/alojamiento">Publicar nuevo alojamiento</a>
+                    <a class="dropdown-item" id="apartamento" routerLink="/apartamentos" routerLinkActive="active-link">Apartamentos</a>
+                    <a class="dropdown-item" id="campings" routerLink="/campings" routerLinkActive="active-link">Campings</a>
+                    <a class="dropdown-item" id="hoteles" routerLink="/hoteles" routerLinkActive="active-link">Hoteles</a>
+                    <a class="dropdown-item" id="newPost" routerLink="/publicar/alojamiento" routerLinkActive="active-link">Publicar nuevo alojamiento</a>
                 </div>
             </div>
         </div>
@@ -24,18 +24,14 @@
     <!------------------------------- Div de Comercios -------------------------------->
     <div class="collapse navbar-collapse" id="navbar">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-warning"><a href="/comercios">Comercios</a></button>
+            <button type="button" class="btn btn-warning"><a routerLink="/comercios" routerLinkActive="active-link">Comercios</a></button>
             <div class="btn-group" role="group">
                 <button id="restaurantesNav" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu hidden" aria-labelledby="restaurantesNav" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                    <a class="dropdown-item" id="restaurante" href="/restaurantes">Restaurantes</a>
-
-
-
-
-                    <a class="dropdown-item" id="tienda" href="/tiendas">Tienda de animales</a>
-                    <a class="dropdown-item" id="veterinario" href="/veterinarios">Veterinarios</a>
-                    <a class="dropdown-item" id="newPost" href="/publicar/comercio">Publicar nuevo comercio</a>
+                    <a class="dropdown-item" id="restaurante" routerLink="/restaurantes" routerLinkActive="active-link">Restaurantes</a>
+                    <a class="dropdown-item" id="tienda" routerLink="/tiendas" routerLinkActive="active-link">Tienda de animales</a>
+                    <a class="dropdown-item" id="veterinario" routerLink="/veterinarios" routerLinkActive="active-link">Veterinarios</a>
+                    <a class="dropdown-item" id="newPost" routerLink="/publicar/comercio" routerLinkActive="active-link">Publicar nuevo comercio</a>
                 </div>
             </div>
         </div>

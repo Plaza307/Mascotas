@@ -10,7 +10,7 @@
             <h6>{{ apartamentos.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(apartamentos.id_usuario) == true">
                 <div class="botones">
-                    <div id="botonEditar" class=" btn " (click)="ngOcultarFormulario(apartamentos.id_sitio) || ngMostrarFormulario(apartamentos.id_sitio)">Editar</div>
+                    <div id="botonEditar" class=" btn " (click)="ngOcultarFormulario(apartamentos.id_sitio) || ngMostrarFormulario(apartamentos.id_sitio); formularioUpdate.patchValue(apartamentos)">Editar</div>
                     <div class="btn " (click)="ngBorrarSitio(apartamentos.id_sitio)">Borrar</div>
                 </div>
             </div>
@@ -19,31 +19,31 @@
 
         <div id="{{apartamentos.id_sitio}}" class="formularioOculto apartamento">
             <form [formGroup]="formularioUpdate" (submit)="submit(apartamentos.id_sitio)">
-                <label> Nombre del apartamento: </label> <input type="text" formControlName="nombre" value="{{apartamentos.nombre}}"><br>
+                <label> Nombre del apartamento: </label> <input type="text" formControlName="nombre"><br>
 
-                <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{apartamentos.descripcion}}"><br>
-
-
-                <label>Precio: </label> <input type="number" formControlName="precio" value="{{apartamentos.precio}}"><br>
+                <label>Descripcion: </label><input type="textarea" formControlName="descripcion"><br>
 
 
-                <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{apartamentos.capacidad}}"><br>
+                <label>Precio: </label> <input type="number" formControlName="precio"><br>
 
 
-                <label> Telefono: </label><input type="number" formControlName="telefono" value="{{apartamentos.telefono}}"><br>
+                <label> Capacidad: </label><input type="number" formControlName="capacidad"><br>
 
 
-                <label>Web: </label> <input type="text" formControlName="web" value="{{apartamentos.web}}"><br>
+                <label> Telefono: </label><input type="number" formControlName="telefono"><br>
+
+
+                <label>Web: </label> <input type="text" formControlName="web"><br>
 
                 <label>Ciudad: </label>
                 <label>
-                    <select formControlName="id_ciudad" value="{{apartamentos.id_ciudad}}">{{apartamentos.provincia}}
+                    <select formControlName="id_ciudad">
                     <option  *ngFor="let ciudades of listaCiudades " value="{{ciudades.id_ciudad}} ">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>
                 <label>Tipo sitios: </label>
                 <label>
-                    <select formControlName="id_tipo" value="{{apartamentos.id_tipo}}">{{apartamentos.nombre}}
+                    <select formControlName="id_tipo" value="{{apartamentos.id_tipo}}">
                     <option  *ngFor="let tipoSitio of listaTipoSitios" value="{{tipoSitio.id_tipositio}}">{{tipoSitio.nombre}}</option>
                     </select>
                 </label>

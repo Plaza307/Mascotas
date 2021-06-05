@@ -11,6 +11,7 @@ declare var $: any;
   templateUrl: './vista-alojamiento.component.html',
   styleUrls: ['./vista-alojamiento.component.scss']
 })
+
 export class VistaAlojamientoComponent implements OnInit {
   private formularioUpdate: FormGroup;
   public listaAlojamientos: any;
@@ -18,6 +19,7 @@ export class VistaAlojamientoComponent implements OnInit {
   public listaTipoSitios: any;
   constructor(private router: Router, private FormBuilder: FormBuilder, private servicioHoteles: HotelesService) {
     this.formularioUpdate = FormBuilder.group({
+      id_sitio: [null],
       nombre: [''],
       descripcion: [''],
       foto: [''],
@@ -50,8 +52,6 @@ export class VistaAlojamientoComponent implements OnInit {
 
   puedeEditar(id_usuario:any){
     if(localStorage.getItem('id') == id_usuario || localStorage.getItem('ROLE') == 'ROLE_ADMIN') {
-
-      console.log("el local id", localStorage.getItem('id'), "el id usuario es", id_usuario );
      return true;
    } else {
       return false;
@@ -64,10 +64,11 @@ export class VistaAlojamientoComponent implements OnInit {
         if (res) {
           alert('Alojamiento actualizado correctamente');
           this.router.navigate(['/alojamientos']);
-          this.ngOnInit;
+          window.location.reload();
         } else {
           alert('No se ha podido actualizar el alojamiento');
           this.router.navigate(['/alojamientos']);
+          window.location.reload();
         }
         console.log(res);
   }, 

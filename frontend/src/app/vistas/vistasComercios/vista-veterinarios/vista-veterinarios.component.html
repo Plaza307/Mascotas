@@ -9,7 +9,7 @@
             <h6>{{ veterinario.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(veterinario.id_usuario) == true">
                 <div class="botones">
-                    <div id="botonEditar" class="btn" (click)="ngOcultarFormulario(veterinario.id_sitio) || ngMostrarFormulario(veterinario.id_sitio)">Editar</div>
+                    <div id="botonEditar" class="btn" (click)="ngOcultarFormulario(veterinario.id_sitio) || ngMostrarFormulario(veterinario.id_sitio); formularioUpdate.patchValue(veterinario)">Editar</div>
                     <div class="btn" (click)="ngBorrarSitio(veterinario.id_sitio)">Borrar</div>
                 </div>
             </div>
@@ -17,25 +17,25 @@
 
         <div id="{{veterinario.id_sitio}}" class="formularioOculto veterinarios">
             <form [formGroup]="formularioUpdate" (submit)="submit(veterinario.id_sitio)">
-                <label> Nombre del veterinario: </label> <input type="text" formControlName="nombre" value="{{veterinario.nombre}}"><br>
+                <label> Nombre del veterinario: </label> <input type="text" formControlName="nombre"><br>
 
-                <label>Descripcion: </label><input type="textarea" formControlName="descripcion" value="{{veterinario.descripcion}}"><br>
-
-
-                <label>Precio: </label> <input type="number" formControlName="precio" value="{{veterinario.precio}}"><br>
+                <label>Descripcion: </label><input type="textarea" formControlName="descripcion"><br>
 
 
-                <label> Capacidad: </label><input type="number" formControlName="capacidad" value="{{veterinario.capacidad}}"><br>
+                <label>Precio: </label> <input type="number" formControlName="precio"><br>
 
 
-                <label> Telefono: </label><input type="number" formControlName="telefono" value="{{veterinario.telefono}}"><br>
+                <label> Capacidad: </label><input type="number" formControlName="capacidad"><br>
 
 
-                <label>Web: </label> <input type="text" formControlName="web" value="{{veterinario.web}}"><br>
+                <label> Telefono: </label><input type="number" formControlName="telefono"><br>
+
+
+                <label>Web: </label> <input type="text" formControlName="web"><br>
 
                 <label>Ciudad: </label>
                 <label>
-                    <select formControlName="id_ciudad" value="{{veterinario.id_ciudad}}">{{veterinario.provincia}}
+                    <select formControlName="id_ciudad">
                     <option  *ngFor="let ciudades of listaCiudades" value="{{ciudades.id_ciudad}}">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>

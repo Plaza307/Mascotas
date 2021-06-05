@@ -20,6 +20,7 @@ export class VistaTiendasComponent implements OnInit {
   public listaTipoSitios: any
   constructor(private servicioComercio: ComerciosService, private router: Router, private FormBuilder: FormBuilder, private servicioHoteles: HotelesService ) {
     this.formularioUpdate = FormBuilder.group({
+      id_sitio:[null],
       nombre: [''],
       descripcion: [''],
       foto: [''],
@@ -56,9 +57,11 @@ export class VistaTiendasComponent implements OnInit {
           alert('Tienda actualizada correctamente');
           this.router.navigate(['/tiendas']);
           this.ngOnInit;
+          window.location.reload();
         } else {
           alert('No se ha podido actualizar la tienda');
           this.router.navigate(['/tiendas']);
+          window.location.reload();
         }
         console.log(res);
   }, 

@@ -10,7 +10,7 @@
             <h6>{{ campings.web}}</h6><br>
             <div id=puedeEditar *ngIf="puedeEditar(campings.id_usuario) == true">
                 <div class="botones">
-                    <div id="botonEditar" class=" btn" (click)="ngOcultarFormulario(campings.id_sitio) || ngMostrarFormulario(campings.id_sitio)">Editar</div>
+                    <div id="botonEditar" class=" btn" (click)="ngOcultarFormulario(campings.id_sitio) || ngMostrarFormulario(campings.id_sitio); formularioUpdate.patchValue(campings)">Editar</div>
                     <div class="btn" (click)="ngBorrarSitio(campings.id_sitio)">Borrar</div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
 
                 <label>Ciudad: </label>
                 <label>
-                    <select formControlName="id_ciudad" value="{{campings.id_ciudad}}">{{campings.provincia}}
+                    <select formControlName="id_ciudad">
                     <option  *ngFor="let ciudades of listaCiudades" value="{{ciudades.id_ciudad}}">{{ciudades.provincia}}</option>
                     </select>
                 </label><br>

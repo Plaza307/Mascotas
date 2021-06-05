@@ -20,6 +20,7 @@ export class VistaCampingsComponent implements OnInit {
   public listaTipoSitios: any;
   constructor(private router: Router, private FormBuilder: FormBuilder, private servicioHoteles: HotelesService) {
     this.formularioUpdate = FormBuilder.group({
+      id_sitio: [null],
       nombre: [''],
       descripcion: [''],
       foto: [''],
@@ -59,9 +60,11 @@ export class VistaCampingsComponent implements OnInit {
           alert('Camping actualizado correctamente');
           this.router.navigate(['/campings']);
           this.ngOnInit;
+          window.location.reload();
         } else {
           alert('No se ha podido actualizar el camping');
           this.router.navigate(['/campings']);
+          window.location.reload();
         }
         console.log(res);
   }, 

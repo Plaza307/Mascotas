@@ -19,6 +19,7 @@ export class VistaRestaurantesComponent implements OnInit {
   public listaTipoSitios: any
   constructor(private servicioComercio: ComerciosService, private router: Router, private FormBuilder: FormBuilder, private servicioHoteles: HotelesService ) {
     this.formularioUpdate = FormBuilder.group({
+      id_sitio: [null],
       nombre: [''],
       descripcion: [''],
       foto: [''],
@@ -56,9 +57,11 @@ export class VistaRestaurantesComponent implements OnInit {
           alert('Restaurante actualizado correctamente');
           this.router.navigate(['/restaurantes']);
           this.ngOnInit;
+          window.location.reload();
         } else {
           alert('No se ha podido actualizar el restaurante');
           this.router.navigate(['/restaurantes']);
+          window.location.reload();
         }
         console.log(res);
   }, 

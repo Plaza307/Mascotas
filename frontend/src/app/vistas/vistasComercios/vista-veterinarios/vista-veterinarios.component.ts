@@ -19,6 +19,7 @@ export class VistaVeterinariosComponent implements OnInit {
   public listaTipoSitios: any
   constructor(private servicioComercio: ComerciosService, private router: Router, private FormBuilder: FormBuilder, private servicioHoteles: HotelesService ) {
     this.formularioUpdate = FormBuilder.group({
+      id_sitio:[null],
       nombre: [''],
       descripcion: [''],
       foto: [''],
@@ -56,9 +57,11 @@ export class VistaVeterinariosComponent implements OnInit {
           alert('Veterinario actualizado correctamente');
           this.router.navigate(['/veterinarios']);
           this.ngOnInit;
+          window.location.reload();
         } else {
           alert('No se ha podido actualizar el veterinario');
           this.router.navigate(['/veterinarios']);
+          window.location.reload();
         }
         console.log(res);
   }, 

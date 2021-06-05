@@ -20,6 +20,7 @@ export class VistaApartamentosComponent implements OnInit {
   public listaTipoSitios: any;
   constructor(private router: Router, private FormBuilder: FormBuilder, private servicioHoteles: HotelesService) {
     this.formularioUpdate = FormBuilder.group({
+      id_sitio: [null],
       nombre: [''],
       descripcion: [''],
       foto: [''],
@@ -61,9 +62,11 @@ export class VistaApartamentosComponent implements OnInit {
           alert('Apartamento actualizado correctamente');
           this.router.navigate(['/apartamentos']);
           this.ngOnInit;
+          window.location.reload();
         } else {
           alert('No se ha podido actualizar el apartamento');
           this.router.navigate(['/apartamentos']);
+          window.location.reload();
         }
         console.log(res);
   }, 

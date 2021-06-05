@@ -8,7 +8,7 @@
             <h2>{{ user.telefono}}</h2><br>
             <h2>{{ user.f_nac}}</h2><br>
             <div class="botones">
-                <div class="btn " (click)="ngOcultarFormulario(user.id_usuario) || ngMostrarFormulario(user.id_usuario)">Editar</div>
+                <div class="btn " (click)="ngOcultarFormulario(user.id_usuario) || ngMostrarFormulario(user.id_usuario); formularioUpdate.patchValue(user)">Editar</div>
                 <div class="btn " (click)="ngBorrarUsuario(user.id_usuario)">Eliminar</div>
                 <div class="btn " (click)="ngOcultarFormulario1(user.id_usuario) || ngMostrarFormulario1(user.id_usuario)">Cambiar contraseña</div>
             </div>
@@ -16,18 +16,18 @@
 
         <div id="{{user.id_usuario}}" class="formularioOculto usuarios">
             <form [formGroup]="formularioUpdate" (submit)="submit(user.id_usuario)">
-                <label> Nombre: </label> <input type="text" formControlName="nombre" value="{{user.nombre}}"><br>
+                <label> Nombre: </label> <input type="text" formControlName="nombre"><br>
 
-                <label>Apellidos: </label><input type="text" formControlName="apellidos" value="{{user.apellidos}}"><br>
-
-
-                <label>Email: </label> <input type="text" formControlName="email" value="{{user.email}}"><br>
+                <label>Apellidos: </label><input type="text" formControlName="apellidos"><br>
 
 
-                <label> Telefono: </label><input type="number" formControlName="telefono" value="{{user.telfono}}"><br>
+                <label>Email: </label> <input type="text" formControlName="email"><br>
 
 
-                <label> f_nac: </label><input type="date" formControlName="f_nac" value="{{user.f_nac}}"><br>
+                <label> Telefono: </label><input type="number" formControlName="telefono"><br>
+
+
+                <label> f_nac: </label><input type="date" formControlName="f_nac"><br>
 
 
 
